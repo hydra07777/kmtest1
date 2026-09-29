@@ -261,11 +261,65 @@ body {
 .hero__title-word { display: inline-block; will-change: transform, opacity; }
 
 .hero__sub {
-  margin: 18px auto 28px;
+  margin: 22px auto 32px;
   font-size: var(--t-md);
-  font-weight: 900;
-  color: red;
-  max-width: 60ch;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--gris);
+  max-width: 58ch;
+  letter-spacing: -0.005em;
+  opacity: 1;
+  transform: none;
+}
+
+/* Animations CSS du hero — état initial avant .is-loaded */
+.hero [data-anim="sub"],
+.hero [data-anim="cta"],
+.hero [data-anim="float-sales"],
+.hero [data-anim="float-submission"],
+.hero [data-anim="float-prop"],
+.hero [data-anim="search"] {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.hero [data-anim="sub"]       { transform: translateY(16px); }
+.hero [data-anim="cta"]       { transform: translateY(12px); }
+.hero [data-anim="float-sales"]      { transform: translate(-40px, 20px); }
+.hero [data-anim="float-submission"] { transform: translate( 40px, 20px); }
+.hero [data-anim="float-prop"]       { transform: translate( 40px, 40px); }
+.hero [data-anim="search"]    { transform: translateY(24px); }
+
+/* Quand JS a ajouté .is-loaded : anim vers l'état final */
+.hero.is-loaded [data-anim="sub"] {
+  transition: opacity 700ms var(--ease-out) 500ms, transform 700ms var(--ease-out) 500ms;
+  opacity: 1; transform: translateY(0);
+}
+.hero.is-loaded [data-anim="cta"] {
+  transition: opacity 600ms var(--ease-out) 650ms, transform 600ms var(--ease-out) 650ms;
+  opacity: 1; transform: translateY(0);
+}
+.hero.is-loaded [data-anim="float-sales"] {
+  transition: opacity 900ms var(--ease-out) 800ms, transform 900ms var(--ease-out) 800ms;
+  opacity: 1; transform: translate(0, 0);
+}
+.hero.is-loaded [data-anim="float-submission"] {
+  transition: opacity 900ms var(--ease-out) 900ms, transform 900ms var(--ease-out) 900ms;
+  opacity: 1; transform: translate(0, 0);
+}
+.hero.is-loaded [data-anim="float-prop"] {
+  transition: opacity 900ms var(--ease-out) 1000ms, transform 900ms var(--ease-out) 1000ms;
+  opacity: 1; transform: translate(0, 0);
+}
+.hero.is-loaded [data-anim="search"] {
+  transition: opacity 800ms var(--ease-out) 1100ms, transform 800ms var(--ease-out) 1100ms;
+  opacity: 1; transform: translateY(0);
+}
+
+/* Sécurité : si JS ne se charge pas, on montre tout */
+.hero.no-js [data-anim] { opacity: 1 !important; transform: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero [data-anim] { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
 .hero__cta {

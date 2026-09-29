@@ -1,4 +1,4 @@
-import"./nav-D8WkzI7i.js";import{p as t,a as s,b as n,s as p}from"./data-BdpePb1c.js";const g=new URLSearchParams(window.location.search),h=g.get("id")||t[0].id,i=t.find(e=>e.id===h)||t[0],w=s[i.id]||s["mama-koko"],l=document.getElementById("hero-visual");l&&(l.innerHTML=`
+import"./nav-C1bK3fkt.js";import{p as t,a as s,b as n,s as p}from"./data-BdpePb1c.js";const g=new URLSearchParams(window.location.search),h=g.get("id")||t[0].id,i=t.find(e=>e.id===h)||t[0],w=s[i.id]||s["mama-koko"],l=document.getElementById("hero-visual");l&&(l.innerHTML=`
     <img src="${w}" alt="${i.title}" />
     <div class="listing-hero__overlay"></div>
   `);const o=document.getElementById("meta-row");o&&(o.innerHTML=`

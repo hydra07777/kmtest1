@@ -1,15 +1,18 @@
 // landing.js — Rendu Bento + animations GSAP pour la landing
 import { phares, testimonials } from "./data.js";
-import { initNavScroll, heroIntro, heroParallax, staggerReveal, scrubText, parallaxY } from "./motion.js";
+import { initNavScroll, heroParallax, staggerReveal, scrubText, parallaxY } from "./motion.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Animations nav
   initNavScroll(document.querySelector(".nav"));
 
   // Hero intro + parallax
+  // NOTE: on n'appelle PAS heroIntro() ici — les animations du hero
+  // (subtitle, CTA, floats, search bar) sont gérées en CSS via .hero.is-loaded
+  // pour garantir l'état final visible. heroIntro reste utilisé par les
+  // pages secondaires (listing, booking, etc.).
   const hero = document.querySelector(".hero");
   if (hero) {
-    heroIntro(hero);
     heroParallax(document.querySelector(".hero__visual"));
   }
 
@@ -112,7 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
     scrubText(document.querySelector(".cta"), ".cta__title-word");
   }
 
-  // Animations GSAP spécifiques landing (hero words, float cards)
+  // Animations CSS du hero (déclenchées au load)
+  // On utilise CSS plutôt que GSAP.from() pour garantir l'état final visible.
+  const heroEl = document.querySelector(".hero");
+  if (heroEl) heroEl.classList.add("is-loaded");
+
+  // Animations GSAP spécifiques landing (mots hero avec stagger)
   const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (window.gsap && !reduced) {
     const gsap = window.gsap;
@@ -121,12 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
       yPercent: 100, opacity: 0, duration: 0.8,
       ease: "power3.out", stagger: 0.06, delay: 0.2
     });
-    gsap.from("[data-anim=sub]", { y: 16, opacity: 0, duration: 0.7, ease: "power3.out", delay: 0.7 });
-    gsap.from("[data-anim=cta]", { y: 12, opacity: 0, duration: 0.6, ease: "power3.out", delay: 0.85 });
-    gsap.from("[data-anim=float-sales]",      { x: -40, y: 20, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.0 });
-    gsap.from("[data-anim=float-submission]", { x:  40, y: 20, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.1 });
-    gsap.from("[data-anim=float-prop]",       { x:  40, y: 40, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.2 });
-    gsap.from("[data-anim=search]", { y: 24, opacity: 0, duration: 0.8, ease: "power3.out", delay: 1.3 });
 
     if (window.ScrollTrigger) {
       const st = window.ScrollTrigger;

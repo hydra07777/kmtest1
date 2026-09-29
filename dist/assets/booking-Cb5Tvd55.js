@@ -1,0 +1,1 @@
+import"./nav-C1bK3fkt.js";document.querySelectorAll(".pay-method").forEach(e=>{e.addEventListener("click",()=>{document.querySelectorAll(".pay-method").forEach(t=>t.classList.remove("is-active")),e.classList.add("is-active")})});
