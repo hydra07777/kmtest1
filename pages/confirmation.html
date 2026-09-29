@@ -6,95 +6,67 @@
   <title>Confirmation — Keliabe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://images.unsplash.com/" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/components.css" />
   <link rel="stylesheet" href="../styles/landing.css" />
-  <style>
-    .confirm-page {
-      padding: calc(var(--nav-h) + var(--s-8)) 0 var(--s-9);
-      text-align: center;
-    }
-    .confirm-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--seve);
-      color: var(--paper);
-      display: grid;
-      place-items: center;
-      margin: 0 auto var(--s-5);
-    }
-    .confirm-card {
-      max-width: 520px;
-      width: 100%;
-      margin: var(--s-6) auto 0;
-      background: var(--paper-elev);
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      padding: var(--s-5);
-      text-align: left;
-    }
-    .confirm-row {
-      display: flex;
-      justify-content: space-between;
-      padding: var(--s-3) 0;
-      border-bottom: 1px solid var(--line);
-      font-size: var(--t-sm);
-    }
-    .confirm-row:last-child { border-bottom: none; }
-    .confirm-row__label { color: var(--gris); }
-    .confirm-row__value { font-family: var(--font-mono); font-weight: 500; word-break: break-word; max-width: 60%; text-align: right; }
-    @media (max-width: 480px) {
-      .confirm-card { padding: var(--s-4); }
-      .confirm-row { font-size: var(--t-xs); }
-    }
-  </style>
+  <link rel="stylesheet" href="../styles/pages.css" />
 </head>
 <body>
 
-<header class="nav">
-  <div class="container nav__inner">
-    <a href="./index.html" class="nav__brand">
-      <span class="nav__brand-mark">K</span>Keliabe
-      <span class="nav__brand-flag"></span>
-    </a>
+<header class="nav" role="banner">
+  <div class="nav__inner">
+    <a href="./index.html" class="nav__brand"><span class="nav__brand-mark">K</span>Keliabe</a>
     <nav class="nav__links">
-      <a href="./index.html#categories">Explorer</a>
-      <a href="./listing.html">Hôtes</a>
-      <a href="./index.html#why">Aide</a>
+      <a href="./index.html">Home</a>
+      <a href="search.html">Property</a>
+      <a href="#">Add New Listing</a>
+      <a href="confirmation.html" class="is-active">Proposal</a>
     </nav>
-    <div class="nav__cta">
-      <a href="#" class="btn btn--ghost btn--sm">Connexion</a>
-      <a href="#" class="btn btn--primary btn--sm">S'inscrire</a>
+    <div class="nav__icons">
+      <button class="nav__icon-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <button class="nav__icon-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></button>
+      <button class="nav__icon-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     </div>
   </div>
 </header>
 
-<main class="container confirm-page">
-  <div class="confirm-icon" aria-hidden="true">
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12 L 10 17 L 20 7"/></svg>
-  </div>
-  <span class="eyebrow eyebrow--sang">Réservation confirmée</span>
-  <h1 style="margin-top: 12px;">C'est dans la poche,<br/>Patience.</h1>
-  <p style="margin-top: var(--s-3); color: var(--gris); max-width: 48ch; margin-left: auto; margin-right: auto;">
-    Un SMS de confirmation vient de partir vers le +243 81 234 5678. Maman Koko te contactera dans l'heure pour confirmer ton heure d'arrivée.
-  </p>
+<main class="confirm-page">
+  <div class="confirm-page__bg" style="background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=80&auto=format&fit=crop');"></div>
 
-  <div class="confirm-card">
-    <div class="confirm-row"><span class="confirm-row__label">Référence</span><span class="confirm-row__value">KLB-2026-0117-MK</span></div>
-    <div class="confirm-row"><span class="confirm-row__label">Lieu</span><span class="confirm-row__value">Mama Koko · Gombe</span></div>
-    <div class="confirm-row"><span class="confirm-row__label">Dates</span><span class="confirm-row__value">15 nov. → 17 nov. 2026</span></div>
-    <div class="confirm-row"><span class="confirm-row__label">Personnes</span><span class="confirm-row__value">2</span></div>
-    <div class="confirm-row"><span class="confirm-row__label">Paiement</span><span class="confirm-row__value">Airtel Money · 9 500 CDF</span></div>
-  </div>
+  <div class="container confirm-page__inner">
+    <div class="confirm-icon">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12 L 10 17 L 20 7"/></svg>
+    </div>
+    <span class="eyebrow eyebrow--ocean">Réservation confirmée</span>
+    <h1>C'est dans la poche,<br/>Patience.</h1>
+    <p class="confirm-page__sub">Un SMS de confirmation vient de partir vers le +243 81 234 5678. Maman Koko te contactera dans l'heure pour confirmer ton heure d'arrivée.</p>
 
-  <div style="display: flex; gap: var(--s-3); justify-content: center; margin-top: var(--s-6); flex-wrap: wrap;">
-    <a href="./index.html" class="btn btn--ghost btn--lg">Retour à l'accueil</a>
-    <a href="#" class="btn btn--primary btn--lg">Voir ma réservation</a>
+    <div class="confirm-card">
+      <div class="confirm-row"><span class="confirm-row__label">Référence</span><span class="confirm-row__value">KLB-2026-0117-MK</span></div>
+      <div class="confirm-row"><span class="confirm-row__label">Lieu</span><span class="confirm-row__value">Mama Koko · Gombe</span></div>
+      <div class="confirm-row"><span class="confirm-row__label">Dates</span><span class="confirm-row__value">15 nov. → 17 nov. 2026</span></div>
+      <div class="confirm-row"><span class="confirm-row__label">Personnes</span><span class="confirm-row__value">2</span></div>
+      <div class="confirm-row"><span class="confirm-row__label">Paiement</span><span class="confirm-row__value">Airtel Money · 9 500 CDF</span></div>
+    </div>
+
+    <div class="confirm-actions">
+      <a href="./index.html" class="btn btn--ghost btn--lg">Retour à l'accueil</a>
+      <a href="#" class="btn btn--primary btn--lg">Voir ma réservation</a>
+    </div>
   </div>
 </main>
 
+<footer class="footer">
+  <div class="footer__inner">
+    <div><div class="nav__brand"><span class="nav__brand-mark">K</span>Keliabe</div><p class="footer__brand-tagline">La plateforme de réservation touristique de la RDC.</p></div>
+    <div class="footer__col"><h4>Découvrir</h4><ul><li><a href="search.html">Kinshasa</a></li><li><a href="#">Goma</a></li><li><a href="#">Lubumbashi</a></li></ul></div>
+    <div class="footer__col"><h4>Hôtes</h4><ul><li><a href="#">Devenir hôte</a></li><li><a href="#">Ressources</a></li></ul></div>
+    <div class="footer__col"><h4>Compagnie</h4><ul><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="footer__bottom"><div>© 2026 Keliabe · Kinshasa, RDC</div><div>Confidentialité · Conditions</div></div>
+</footer>
 </body>
 </html>

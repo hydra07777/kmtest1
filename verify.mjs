@@ -97,25 +97,25 @@ async function parcours(page) {
   await exploreBtn.click();
   await page.waitForURL(/search/, { timeout: 5000 });
   await page.waitForLoadState("networkidle");
-  await page.waitForSelector(".testi__grid .glass-card, .results-grid .card", { timeout: 5000 });
+  await page.waitForSelector(".results-grid .result-card", { timeout: 5000 });
   console.log("  ✓ landing → search");
 
   // search → listing
-  const firstCard = await page.$(".results-grid .card");
+  const firstCard = await page.$(".results-grid .result-card");
   await firstCard.click();
   await page.waitForURL(/listing/, { timeout: 5000 });
   await page.waitForLoadState("networkidle");
   console.log("  ✓ search → listing");
 
   // listing → booking
-  const reserveBtn = await page.$("a.btn--primary.btn--lg");
+  const reserveBtn = await page.$(".booking-card__cta");
   await reserveBtn.click();
   await page.waitForURL(/booking/, { timeout: 5000 });
   await page.waitForLoadState("networkidle");
   console.log("  ✓ listing → booking");
 
   // booking → confirmation
-  const confirmBtn = await page.$(".booking-grid aside a.btn--primary");
+  const confirmBtn = await page.$(".booking-card__cta");
   await confirmBtn.click();
   await page.waitForURL(/confirmation/, { timeout: 5000 });
   await page.waitForLoadState("networkidle");

@@ -6,110 +6,69 @@
   <title>Kinshasa · Résultats — Keliabe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://images.unsplash.com/" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/base.css" />
   <link rel="stylesheet" href="../styles/components.css" />
   <link rel="stylesheet" href="../styles/landing.css" />
-  <style>
-    .search-layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: var(--s-6);
-      padding-top: var(--s-7);
-      padding-bottom: var(--s-9);
-    }
-    @media (max-width: 960px) { .search-layout { grid-template-columns: 1fr; } }
-    .filters {
-      position: sticky;
-      top: calc(var(--nav-h) + 16px);
-      align-self: start;
-      background: var(--paper-elev);
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      padding: var(--s-5);
-    }
-    .filters h3 {
-      font-family: var(--font-sans);
-      font-size: var(--t-sm);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gris);
-      margin-bottom: var(--s-3);
-    }
-    .filters__group { margin-bottom: var(--s-5); }
-    .filters__chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      border-radius: var(--r-pill);
-      border: 1px solid var(--line);
-      background: var(--paper-elev);
-      font-size: var(--t-sm);
-      cursor: pointer;
-      transition: background-color var(--d-base) var(--ease-out), border-color var(--d-base) var(--ease-out);
-      margin: 0 6px 8px 0;
-      min-height: 44px;
-    }
-    .filters__chip.is-active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .filters__chip:hover { border-color: var(--ink); }
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--s-4);
-    }
-    @media (max-width: 960px) { .results-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 600px) { .results-grid { grid-template-columns: 1fr; } }
-    .results-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      margin-bottom: var(--s-5);
-      gap: var(--s-3);
-      flex-wrap: wrap;
-    }
-    .results-count { color: var(--gris); font-size: var(--t-sm); }
-  </style>
+  <link rel="stylesheet" href="../styles/pages.css" />
 </head>
 <body>
 
-<header class="nav">
-  <div class="container nav__inner">
+<!-- NAV (commune ZenSpace) -->
+<header class="nav" role="banner">
+  <div class="nav__inner">
     <a href="./index.html" class="nav__brand">
-      <span class="nav__brand-mark">K</span>Keliabe
-      <span class="nav__brand-flag"></span>
+      <span class="nav__brand-mark">K</span>
+      Keliabe
     </a>
     <nav class="nav__links">
-      <a href="./index.html#categories">Explorer</a>
-      <a href="./listing.html">Hôtes</a>
-      <a href="./index.html#why">Aide</a>
+      <a href="./index.html">Home</a>
+      <a href="search.html" class="is-active">Property</a>
+      <a href="#" onclick="event.preventDefault(); document.querySelector('main').scrollIntoView({behavior:'smooth'});">Add New Listing</a>
+      <a href="confirmation.html">Proposal</a>
     </nav>
-    <div class="nav__cta">
-      <a href="#" class="btn btn--ghost btn--sm">Connexion</a>
-      <a href="#" class="btn btn--primary btn--sm">S'inscrire</a>
+    <div class="nav__icons">
+      <button class="nav__icon-btn" aria-label="Rechercher"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <button class="nav__icon-btn" aria-label="Notifications"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></button>
+      <button class="nav__icon-btn" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     </div>
   </div>
 </header>
 
-<main class="container">
+<!-- HEADER PHOTO -->
+<section class="page-hero">
+  <div class="page-hero__bg" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&q=80&auto=format&fit=crop');"></div>
+  <div class="container page-hero__inner">
+    <span class="eyebrow eyebrow--ocean">Kinshasa · 707 lieux</span>
+    <h1>Trouve ton prochain<br/>lieu en RDC.</h1>
+    <p>Hôtels, restaurants, cafés, expériences et événements — filtrés par quartier, budget et disponibilité.</p>
+  </div>
+</section>
+
+<main class="container page-search">
   <div class="search-layout">
 
     <aside class="filters" aria-label="Filtres">
+      <h3>Filtres</h3>
+
       <div class="filters__group">
-        <h3>Catégorie</h3>
-        <div id="cat-chips"></div>
+        <span class="filters__group-label">Catégorie</span>
+        <div id="cat-chips" class="filters__chips"></div>
       </div>
+
       <div class="filters__group">
-        <h3>Quartier</h3>
-        <div id="q-chips"></div>
+        <span class="filters__group-label">Quartier</span>
+        <div id="q-chips" class="filters__chips"></div>
       </div>
+
       <div class="filters__group">
-        <h3>Budget</h3>
-        <div>
-          <button class="filters__chip" data-price="all">Tous</button>
-          <button class="filters__chip" data-price="low">- 5000 CDF</button>
-          <button class="filters__chip" data-price="mid">5-15k CDF</button>
+        <span class="filters__group-label">Budget</span>
+        <div class="filters__chips">
+          <button class="filters__chip is-active" data-price="all">Tous</button>
+          <button class="filters__chip" data-price="low">−5 000 CDF</button>
+          <button class="filters__chip" data-price="mid">5–15k CDF</button>
           <button class="filters__chip" data-price="high">15k+ CDF</button>
         </div>
       </div>
@@ -118,10 +77,18 @@
     <section>
       <div class="results-head">
         <div>
-          <span class="eyebrow eyebrow--sang">Kinshasa</span>
-          <h2 style="margin-top: 8px;">Phares disponibles</h2>
+          <span class="results-count" id="results-count">— lieux</span>
+          <h2>Phares disponibles</h2>
         </div>
-        <div class="results-count" id="results-count">— lieux</div>
+        <div class="results-sort">
+          <label for="sort">Trier par</label>
+          <select id="sort">
+            <option>Recommandés</option>
+            <option>Prix croissant</option>
+            <option>Prix décroissant</option>
+            <option>Nouveautés</option>
+          </select>
+        </div>
       </div>
       <div class="results-grid" id="results"></div>
     </section>
@@ -129,30 +96,79 @@
   </div>
 </main>
 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="nav__brand">
+        <span class="nav__brand-mark">K</span>Keliabe
+      </div>
+      <p class="footer__brand-tagline">La plateforme de réservation touristique de la RDC.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Découvrir</h4>
+      <ul>
+        <li><a href="search.html">Kinshasa</a></li>
+        <li><a href="#">Goma</a></li>
+        <li><a href="#">Lubumbashi</a></li>
+        <li><a href="#">Bukavu</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Hôtes</h4>
+      <ul>
+        <li><a href="#">Devenir hôte</a></li>
+        <li><a href="#">Ressources</a></li>
+        <li><a href="#">Communauté</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Compagnie</h4>
+      <ul>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Carrières</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div>© 2026 Keliabe · Kinshasa, RDC</div>
+    <div>Confidentialité · Conditions</div>
+  </div>
+</footer>
+
 <script src="../scripts/data.js"></script>
 <script>
 (function () {
   const D = window.KE_DATA;
   if (!D) return;
 
-  // Lire l'URL ?cat=
+  // Images Unsplash par catégorie pour les cartes
+  const unsplash = {
+    restaurant: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80&auto=format&fit=crop",
+    hotel:      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80&auto=format&fit=crop",
+    cafe:       "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=800&q=80&auto=format&fit=crop",
+    experience: "https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?w=800&q=80&auto=format&fit=crop",
+    evenement:  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80&auto=format&fit=crop"
+  };
+  const catToImg = {
+    hotel: unsplash.hotel,
+    restaurant: unsplash.restaurant,
+    cafe: unsplash.cafe,
+    experience: unsplash.experience,
+    evenement: unsplash.evenement
+  };
+
   const params = new URLSearchParams(window.location.search);
   const urlCat = params.get("cat");
-
   let activeCat = urlCat || "all";
   let activeQuartier = "all";
   let activePrice = "all";
 
   const catLabels = {
-    all: "Tout",
-    hotel: "Hôtels",
-    restaurant: "Restaurants",
-    cafe: "Cafés",
-    experience: "Expériences",
-    evenement: "Événements"
+    all: "Tout", hotel: "Hôtels", restaurant: "Restaurants", cafe: "Cafés", experience: "Expériences", evenement: "Événements"
   };
 
-  // Rendu des chips
   const catChips = document.getElementById("cat-chips");
   catChips.innerHTML = Object.keys(catLabels).map(k =>
     `<button class="filters__chip ${activeCat === k ? "is-active" : ""}" data-cat="${k}">${catLabels[k]}</button>`
@@ -160,11 +176,10 @@
 
   const qChips = document.getElementById("q-chips");
   qChips.innerHTML = `<button class="filters__chip is-active" data-q="all">Tous</button>` +
-    D.quartiers.map(q =>
+    D.quartiers.slice(0, 6).map(q =>
       `<button class="filters__chip" data-q="${q.id}">${q.name}</button>`
     ).join("");
 
-  // Rendu des cartes
   function render() {
     const list = D.phares.filter(p => {
       const qOk = activeQuartier === "all" || p.meta.toLowerCase().includes(activeQuartier);
@@ -185,22 +200,30 @@
 
     const results = document.getElementById("results");
     if (!list.length) {
-      results.innerHTML = `<div style="grid-column: 1/-1; padding: var(--s-7); text-align: center; color: var(--gris);">Aucun lieu ne correspond. Essaie d'élargir tes filtres.</div>`;
+      results.innerHTML = `<div class="empty-state"><h3>Aucun résultat</h3><p>Essaie d'élargir tes filtres.</p></div>`;
       return;
     }
-    results.innerHTML = list.map(p => `
-      <a href="./listing.html?id=${p.id}" class="card">
-        <div class="card__media" style="background: linear-gradient(135deg, ${p.gradient[0]}, ${p.gradient[2]});"></div>
-        <div class="card__body">
-          <div class="card__title">${p.title}</div>
-          <div class="card__meta">${p.meta}</div>
-          <div class="card__price">${p.price ? p.price.toLocaleString("fr-FR") + " CDF" : "Gratuit"}</div>
-        </div>
-      </a>
-    `).join("");
+    results.innerHTML = list.map(p => {
+      let img = catToImg.experience;
+      if (/Hôtel/.test(p.meta)) img = catToImg.hotel;
+      else if (/Restaurant/.test(p.meta)) img = catToImg.restaurant;
+      else if (/Café/.test(p.meta)) img = catToImg.cafe;
+      else if (/Événement/.test(p.meta)) img = catToImg.evenement;
+
+      return `
+        <a href="listing.html?id=${p.id}" class="result-card">
+          <div class="result-card__media" style="background-image: url('${img}');"></div>
+          <div class="result-card__body">
+            <span class="badge badge--ocean">Hôte vérifié</span>
+            <div class="result-card__title">${p.title}</div>
+            <div class="result-card__meta">★ 4.${Math.floor(Math.random()*9)+1} · ${p.meta}</div>
+            <div class="result-card__price">${p.price ? p.price.toLocaleString("fr-FR") + " <span>CDF</span>" : "Gratuit"}</div>
+          </div>
+        </a>
+      `;
+    }).join("");
   }
 
-  // Listeners
   document.querySelectorAll("[data-cat]").forEach(b => {
     b.addEventListener("click", () => {
       document.querySelectorAll("[data-cat]").forEach(x => x.classList.remove("is-active"));
