@@ -1,0 +1,22 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch();
+const ctx = await browser.newContext({ viewport: { width: 375, height: 740 } });
+const page = await ctx.newPage();
+const errors = [];
+page.on("pageerror", e => errors.push(e.message));
+await page.goto("http://127.0.0.1:4173/pages/index.html", { waitUntil: "networkidle" });
+await page.waitForTimeout(1500);
+const btn = await page.$(".nav__menu-btn");
+if (!btn) { console.log("NO MENU BUTTON"); process.exit(1); }
+console.log("✓ hamburger visible:", await btn.isVisible());
+await btn.click();
+await page.waitForTimeout(400);
+const drawer = await page.$(".drawer");
+const isOpen = await drawer.evaluate(el => el.classList.contains("is-open"));
+console.log("✓ drawer.is-open:", isOpen);
+await page.screenshot({ path: "shots/drawer-open.png" });
+await page.click('.drawer__link[href="search.html"]');
+await page.waitForURL(/search/, { timeout: 3000 });
+console.log("✓ navigation Property OK:", page.url());
+console.log("Erreurs:", errors);
+await browser.close();

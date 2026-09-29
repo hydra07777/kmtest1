@@ -28,6 +28,9 @@
       <a href="confirmation.html">Proposal</a>
     </nav>
     <div class="nav__icons">
+      <button class="nav__menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <button class="nav__icon-btn" aria-label="Rechercher"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
       <button class="nav__icon-btn" aria-label="Notifications"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></button>
       <button class="nav__icon-btn" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
@@ -122,6 +125,7 @@
 </footer>
 
 <script src="../scripts/data.js"></script>
+<script src="../scripts/nav.js"></script>
 <script>
 (function () {
   const D = window.KE_DATA;
@@ -211,5 +215,22 @@
   `).join("");
 })();
 </script>
+
+<!-- DRAWER MOBILE -->
+<div class="drawer-overlay" aria-hidden="true"></div>
+<aside id="drawer" class="drawer" aria-label="Menu mobile">
+  <div class="drawer__head">
+    <div class="drawer__title">Menu</div>
+    <button class="drawer__close" aria-label="Fermer le menu">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <span class="drawer__section-label">Navigation</span>
+  <a href="./index.html" class="drawer__link">Home<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="search.html" class="drawer__link is-active">Property<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="listing.html" class="drawer__link">Listing<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="booking.html" class="drawer__link">Booking<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="confirmation.html" class="drawer__link">Confirmation<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+</aside>
 </body>
 </html>
