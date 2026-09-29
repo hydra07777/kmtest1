@@ -7,23 +7,8 @@ body {
   background: linear-gradient(180deg, var(--sky-soft) 0%, var(--paper) 40%);
 }
 
-/* ----- FRAME (uniquement pour la suite sous le hero) ----- */
-.frame--body {
-  margin: 24px auto 0;
-  max-width: 1240px;
-  border-radius: 32px;
-  background: var(--paper-elev);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 24px 80px -20px rgba(27, 58, 74, 0.25),
-    0 8px 24px -8px rgba(27, 58, 74, 0.15);
-  overflow: hidden;
-  position: relative;
-}
-@media (max-width: 720px) {
-  .frame--body { margin: 12px 12px 0; border-radius: 24px; }
-}
-
+/* ----- FRAME (supprimée — tout est pleine largeur maintenant) ----- */
+/* Conservée pour rétro-compat éventuelle — pas utilisée sur landing */
 /* ----- NAV (pleine largeur) ----- */
 .nav {
   position: sticky;
@@ -396,15 +381,29 @@ body {
   .search-glass__btn { grid-column: span 2; justify-content: center; margin-left: 0; }
 }
 
-/* ----- SECTION "LATEST PROJECT" ----- */
+/* ----- SECTION "LATEST PROJECT" (pleine largeur, contenu max 1280) ----- */
 .section {
   padding: 80px 24px;
-  max-width: 1200px;
+  width: 100%;
+}
+.section__inner {
+  max-width: 1280px;
   margin: 0 auto;
+}
+.section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 .section__eyebrow {
   font-size: var(--t-sm);
-  color: var(--gris);
+  color: var(--ocean-deep);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin-bottom: 12px;
 }
 .section__title {
@@ -416,13 +415,19 @@ body {
   color: var(--ink);
   max-width: 22ch;
 }
+.section__intro {
+  max-width: 44ch;
+  color: var(--gris);
+  font-size: var(--t-md);
+}
 
-/* Grille Bento de cards */
+/* Grille Bento de cards (pleine largeur, gap serré) */
 .bento {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 16px;
-  margin-top: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 .bento__card {
   position: relative;
@@ -439,16 +444,21 @@ body {
 .bento__card-media {
   position: absolute;
   inset: 0;
-  display: grid; place-items: center;
-  color: var(--paper-elev);
-  font-weight: 600;
+  background-size: cover;
+  background-position: center;
+}
+.bento__card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 27, 34, 0) 40%, rgba(14, 27, 34, 0.55) 100%);
 }
 .bento__card-body {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  padding: 18px 22px;
+  padding: 20px 24px;
   color: var(--paper-elev);
-  background: linear-gradient(180deg, transparent 0%, rgba(14, 27, 34, 0.6) 100%);
+  z-index: 1;
 }
 .bento__card-title {
   font-family: var(--font-display);
@@ -458,8 +468,10 @@ body {
 }
 .bento__card-meta {
   font-size: var(--t-xs);
-  opacity: 0.85;
+  opacity: 0.9;
   margin-top: 4px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
 }
 .bento__card:nth-child(1) { grid-column: span 4; min-height: 360px; }
 .bento__card:nth-child(2) { grid-column: span 2; }
@@ -477,20 +489,23 @@ body {
   .bento__card:nth-child(n) { grid-column: span 1; }
 }
 
-/* ----- TÉMOIGNAGES GLASS ----- */
+/* ----- TÉMOIGNAGES GLASS (pleine largeur) ----- */
 .testi {
   background: linear-gradient(180deg, var(--sky-soft) 0%, var(--paper) 100%);
   padding: 80px 24px;
+  width: 100%;
 }
 .testi__inner {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
+}
+.testi__head {
+  margin-bottom: 40px;
 }
 .testi__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 40px;
 }
 @media (max-width: 960px) { .testi__grid { grid-template-columns: 1fr; } }
 
@@ -519,23 +534,39 @@ body {
 .glass-card__avatar {
   width: 40px; height: 40px;
   border-radius: 50%;
-  background: var(--ocean);
+  background: linear-gradient(135deg, var(--ocean), var(--ocean-deep));
   color: var(--paper-elev);
   display: grid; place-items: center;
   font-family: var(--font-display);
   font-weight: 700;
+  font-size: var(--t-sm);
 }
 .glass-card__name { font-weight: 600; font-size: var(--t-sm); color: var(--ink); }
 .glass-card__role { font-size: var(--t-xs); color: var(--gris); }
 
-/* ----- CTA + FOOTER ----- */
+/* ----- CTA + FOOTER (pleine largeur) ----- */
 .cta {
   padding: 80px 24px;
   background: var(--ink);
   color: var(--paper-elev);
   text-align: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
-.cta__inner { max-width: 800px; margin: 0 auto; }
+.cta::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(111, 180, 199, 0.18), transparent 60%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.cta__inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
 .cta h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -551,10 +582,11 @@ body {
 .footer {
   background: var(--paper-elev);
   border-top: 1px solid var(--line);
-  padding: 56px 24px 32px;
+  padding: 64px 24px 32px;
+  width: 100%;
 }
 .footer__inner {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.4fr repeat(3, 1fr);
@@ -577,7 +609,7 @@ body {
 .footer__col a { font-size: var(--t-sm); color: var(--ink); transition: color var(--d-base) var(--ease-out); }
 .footer__col a:hover { color: var(--ocean-deep); }
 .footer__bottom {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 32px auto 0;
   padding-top: 24px;
   border-top: 1px solid var(--line);

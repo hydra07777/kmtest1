@@ -157,16 +157,22 @@
   </form>
 
   <!-- ============================================================
-       SUITE (frame arrondi)
+       SUITE (pleine largeur, plus de frame arrondi)
        ============================================================ -->
-  <div class="frame frame--body">
 
 <!-- ============================================================
-     SECTION PROJETS RÉCENTS (Bento glass cards)
+     SECTION PROJETS RÉCENTS (Bento avec photos Unsplash)
      ============================================================ -->
 <section class="section">
-  <div class="section__eyebrow">Latest Project</div>
-  <h2 class="section__title">Recent Projects Powered<br/>by Local Curation</h2>
+  <div class="section__inner">
+    <div class="section__head">
+      <div>
+        <div class="section__eyebrow">Latest Project</div>
+        <h2 class="section__title">Recent Projects Powered<br/>by Local Curation</h2>
+      </div>
+      <p class="section__intro">Une sélection vérifiée par notre équipe à Kinshasa. Restaurants, hôtels, expériences — chacun a une histoire à raconter.</p>
+    </div>
+  </div>
   <div class="bento" id="bento"></div>
 </section>
 
@@ -175,8 +181,10 @@
      ============================================================ -->
 <section class="testi">
   <div class="testi__inner">
-    <div class="section__eyebrow">Ce qu'ils en disent</div>
-    <h2 class="section__title">Déjà adopté par<br/>12 000 Kinois.</h2>
+    <div class="testi__head">
+      <div class="section__eyebrow">Ce qu'ils en disent</div>
+      <h2 class="section__title">Déjà adopté par<br/>12 000 Kinois.</h2>
+    </div>
     <div class="testi__grid" id="testi-grid"></div>
   </div>
 </section>
@@ -242,8 +250,6 @@
   </div>
 </footer>
 
-</div><!-- /.frame.frame--body -->
-
 <!-- ============================================================
      DATA
      ============================================================ -->
@@ -257,33 +263,33 @@
   const D = window.KE_DATA;
   if (!D) return;
 
-  // Bento
+  // Bento — vraies photos Unsplash, pas de SVG
   const bentoEl = document.getElementById("bento");
   if (bentoEl) {
     const items = D.phares.slice(0, 5).map((p, i) => {
-      // Chaque carte a un ton très distinct pour casser la monotonie bleu/bleu
-      const tones = [
-        { g: ["#1B3A4A", "#3D8597"], label: "Hôtel · premium" },          // sombre sarcelle
-        { g: ["#B8DCEB", "#6FB4C7"], label: "Café · clair" },               // ciel clair
-        { g: ["#C97B3C", "#E0A064"], label: "Restaurant · chaud" },         // ocre (accent chaud)
-        { g: ["#2E8B57", "#5BAE7E"], label: "Expérience · nature" },        // vert sève
-        { g: ["#0E1B22", "#2E6275"], label: "Événement · nuit" }            // nuit profonde
-      ];
-      const { g, label } = tones[i] || tones[0];
-      const [g1, g2] = g;
+      const photos = {
+        "mama-koko":     "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&auto=format&fit=crop",
+        "memling":       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80&auto=format&fit=crop",
+        "savon":         "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1200&q=80&auto=format&fit=crop",
+        "kin-brasserie": "https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?w=1200&q=80&auto=format&fit=crop",
+        "pool-cruise":   "https://images.unsplash.com/photo-1543872084-c7bd3822856f?w=1200&q=80&auto=format&fit=crop",
+        "marche-central":"https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1200&q=80&auto=format&fit=crop"
+      };
+      const photo = photos[p.id] || photos["mama-koko"];
+      const labels = {
+        "mama-koko":     "Restaurant · Gombe",
+        "memling":       "Hôtel · Gombe",
+        "savon":         "Café · Bandal",
+        "kin-brasserie": "Expérience · Limete",
+        "pool-cruise":   "Expérience · Kintambo",
+        "marche-central":"Événement · Lingwala"
+      };
       return `
         <a href="listing.html?id=${p.id}" class="bento__card">
-          <div class="bento__card-media" style="background: linear-gradient(135deg, ${g1}, ${g2});">
-            <svg viewBox="0 0 400 300" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="opacity:0.35;">
-              <polygon points="100,150 180,90 260,150 260,260 100,260" fill="none" stroke="white" stroke-width="1.5"/>
-              <rect x="140" y="180" width="40" height="50" fill="white" opacity="0.5"/>
-              <rect x="200" y="180" width="40" height="50" fill="white" opacity="0.5"/>
-              <circle cx="320" cy="60" r="20" fill="white" opacity="0.6"/>
-            </svg>
-          </div>
+          <div class="bento__card-media" style="background-image: url('${photo}');"></div>
           <div class="bento__card-body">
             <div class="bento__card-title">${p.title}</div>
-            <div class="bento__card-meta">${label}${p.price ? " · " + p.price.toLocaleString("fr-FR") + " CDF" : ""}</div>
+            <div class="bento__card-meta">${labels[p.id] || p.meta}${p.price ? " · " + p.price.toLocaleString("fr-FR") + " CDF" : ""}</div>
           </div>
         </a>
       `;
