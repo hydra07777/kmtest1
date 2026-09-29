@@ -26,12 +26,12 @@
 .btn:active { transform: scale(0.97); }
 
 .btn--primary {
-  background: var(--sang);
-  color: var(--paper);
+  background: var(--ink);
+  color: var(--paper-elev);
   box-shadow: var(--shadow-sm);
 }
 .btn--primary:hover {
-  background: var(--sang-deep);
+  background: var(--ocean-deep);
   box-shadow: var(--shadow);
 }
 

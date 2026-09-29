@@ -36,7 +36,8 @@ async function check(page, name, url, tag) {
     const u = resp.url();
     if (u.startsWith(base) && resp.status() >= 400) r.failedRequests.push(`${resp.status()} ${u}`);
   });
-  await page.goto(`${base}${url}`, { waitUntil: "networkidle" });
+  await page.goto(`${base}${url}`, { waitUntil: "domcontentloaded", timeout: 15000 });
+  await page.waitForTimeout(2500); // attendre GSAP + photos Unsplash
 
   // Attendre que les animations aient atteint leur état final
   await page.waitForTimeout(1500);
@@ -76,12 +77,19 @@ async function check(page, name, url, tag) {
     r.smallTouch = small;
   }
 
-  // Capture
+  // Capture (sans bloquer sur les fonts Google offline)
   const out = path.join(SHOTS_DIR, `${name}-${tag}.png`);
-  await page.screenshot({ path: out, fullPage: true });
+  try {
+    await page.screenshot({ path: out, fullPage: true, timeout: 8000 });
+  } catch (e) {
+    console.log(`    ⚠ screenshot timeout (fonts?) — fallback viewport`);
+    await page.screenshot({ path: out, fullPage: false, timeout: 8000 });
+  }
   console.log(`  ✓ ${tag.padEnd(7)} → ${out}`);
 
-  if (r.consoleErrors.length) { r.consoleErrors.forEach(e => console.log(`    ⛔ console: ${e}`)); totals.errors += r.consoleErrors.length; }
+  // Filtrer les erreurs réseau dues au blocage CDN (attendu en offline)
+  const filtered = r.consoleErrors.filter(e => !e.includes("net::ERR_FAILED") && !e.includes("ERR_ABORTED"));
+  if (filtered.length) { filtered.forEach(e => console.log(`    ⛔ console: ${e}`)); totals.errors += filtered.length; }
   if (r.failedRequests.length) { r.failedRequests.forEach(u => console.log(`    ⛔ req: ${u}`)); totals.missing += r.failedRequests.length; }
   if (r.overflow > 1) { console.log(`    ⚠ overflow: ${r.overflow}px`); totals.overflow++; }
   if (r.smallTouch.length) { r.smallTouch.slice(0, 5).forEach(s => console.log(`    ⚠ small: ${s}`)); totals.smallTouch += r.smallTouch.length; }
@@ -91,34 +99,34 @@ async function check(page, name, url, tag) {
 async function parcours(page) {
   console.log("\n▶ Parcours landing → search → listing → booking → confirmation");
   // landing → search
-  await page.goto(`${base}/`, { waitUntil: "networkidle" });
-  await page.waitForTimeout(1500);
+  await page.goto(`${base}/`, { waitUntil: "domcontentloaded", timeout: 15000 });
+  await page.waitForTimeout(2000);
   const exploreBtn = await page.$(".search-glass__btn");
   await exploreBtn.click();
   await page.waitForURL(/search/, { timeout: 5000 });
-  await page.waitForLoadState("networkidle");
-  await page.waitForSelector(".results-grid .result-card", { timeout: 5000 });
+  await page.waitForLoadState("domcontentloaded", { timeout: 10000 }).catch(() => {});
+  await page.waitForSelector(".results-grid .result-card", { timeout: 8000 });
   console.log("  ✓ landing → search");
 
   // search → listing
   const firstCard = await page.$(".results-grid .result-card");
   await firstCard.click();
   await page.waitForURL(/listing/, { timeout: 5000 });
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("domcontentloaded", { timeout: 10000 }).catch(() => {});
   console.log("  ✓ search → listing");
 
   // listing → booking
   const reserveBtn = await page.$(".booking-card__cta");
   await reserveBtn.click();
   await page.waitForURL(/booking/, { timeout: 5000 });
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("domcontentloaded", { timeout: 10000 }).catch(() => {});
   console.log("  ✓ listing → booking");
 
   // booking → confirmation
   const confirmBtn = await page.$(".booking-card__cta");
   await confirmBtn.click();
   await page.waitForURL(/confirmation/, { timeout: 5000 });
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("domcontentloaded", { timeout: 10000 }).catch(() => {});
   console.log("  ✓ booking → confirmation");
 }
 
@@ -127,6 +135,14 @@ for (const vp of VIEWPORTS) {
   console.log(`\n═══ ${vp.tag.toUpperCase()} (${vp.width}×${vp.height}) ═══`);
   const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
   const page = await ctx.newPage();
+  // Bloque les fonts Google (offline) pour éviter screenshot timeout
+  await page.route("**/*", route => {
+    const u = route.request().url();
+    if (u.includes("fonts.googleapis.com") || u.includes("fonts.gstatic.com") || u.includes("images.unsplash.com")) {
+      return route.abort();
+    }
+    return route.continue();
+  });
   for (const p of PAGES) {
     await check(page, p.name, p.url, vp.tag);
   }

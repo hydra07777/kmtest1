@@ -263,7 +263,8 @@ body {
 .hero__sub {
   margin: 18px auto 28px;
   font-size: var(--t-md);
-  color: var(--gris);
+  font-weight: 900;
+  color: red;
   max-width: 60ch;
 }
 
