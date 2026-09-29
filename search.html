@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinshasa · Résultats — Keliabe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://images.unsplash.com/" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV (commune ZenSpace) -->
+<header class="nav" role="banner">
+  <div class="nav__inner">
+    <a href="/" class="nav__brand">
+      <span class="nav__brand-mark">K</span>
+      Keliabe
+    </a>
+    <nav class="nav__links">
+      <a href="/">Home</a>
+      <a href="/search.html" class="is-active">Property</a>
+      <a href="#" onclick="event.preventDefault(); document.querySelector('main').scrollIntoView({behavior:'smooth'});">Add New Listing</a>
+      <a href="/confirmation.html">Proposal</a>
+    </nav>
+    <div class="nav__icons">
+      <button class="nav__menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <button class="nav__icon-btn" aria-label="Rechercher"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <button class="nav__icon-btn" aria-label="Notifications"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- HEADER PHOTO -->
+<section class="page-hero">
+  <div class="page-hero__bg" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&q=80&auto=format&fit=crop');"></div>
+  <div class="container page-hero__inner">
+    <span class="eyebrow eyebrow--ocean">Kinshasa · 707 lieux</span>
+    <h1>Trouve ton prochain<br/>lieu en RDC.</h1>
+    <p>Hôtels, restaurants, cafés, expériences et événements — filtrés par quartier, budget et disponibilité.</p>
+  </div>
+</section>
+
+<main class="container page-search">
+  <div class="search-layout">
+
+    <aside class="filters" aria-label="Filtres">
+      <button class="filters__toggle" aria-expanded="false" aria-controls="filters-body">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+          Filtres
+        </span>
+        <span class="filters__count" id="filters-count">0</span>
+        <svg class="filters__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div id="filters-body" class="filters__body">
+        <h3 class="filters__heading">Filtres</h3>
+
+        <div class="filters__group">
+          <span class="filters__group-label">Catégorie</span>
+          <div id="cat-chips" class="filters__chips"></div>
+        </div>
+
+        <div class="filters__group">
+          <span class="filters__group-label">Quartier</span>
+          <div id="q-chips" class="filters__chips"></div>
+        </div>
+
+        <div class="filters__group">
+          <span class="filters__group-label">Budget</span>
+          <div class="filters__chips">
+            <button class="filters__chip is-active" data-price="all">Tous</button>
+            <button class="filters__chip" data-price="low">−5 000 CDF</button>
+            <button class="filters__chip" data-price="mid">5–15k CDF</button>
+            <button class="filters__chip" data-price="high">15k+ CDF</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section>
+      <div class="results-head">
+        <div>
+          <span class="results-count" id="results-count">— lieux</span>
+          <h2>Phares disponibles</h2>
+        </div>
+        <div class="results-sort">
+          <label for="sort">Trier par</label>
+          <select id="sort">
+            <option>Recommandés</option>
+            <option>Prix croissant</option>
+            <option>Prix décroissant</option>
+            <option>Nouveautés</option>
+          </select>
+        </div>
+      </div>
+      <div class="results-grid" id="results"></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="nav__brand">
+        <span class="nav__brand-mark">K</span>Keliabe
+      </div>
+      <p class="footer__brand-tagline">La plateforme de réservation touristique de la RDC.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Découvrir</h4>
+      <ul>
+        <li><a href="/search.html">Kinshasa</a></li>
+        <li><a href="#">Goma</a></li>
+        <li><a href="#">Lubumbashi</a></li>
+        <li><a href="#">Bukavu</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Hôtes</h4>
+      <ul>
+        <li><a href="#">Devenir hôte</a></li>
+        <li><a href="#">Ressources</a></li>
+        <li><a href="#">Communauté</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Compagnie</h4>
+      <ul>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Carrières</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div>© 2026 Keliabe · Kinshasa, RDC</div>
+    <div>Confidentialité · Conditions</div>
+  </div>
+</footer>
+
+<script type="module" src="/src/scripts/search.entry.js"></script>
+
+<!-- DRAWER MOBILE -->
+<div class="drawer-overlay" aria-hidden="true"></div>
+<aside id="drawer" class="drawer" aria-label="Menu mobile">
+  <div class="drawer__head">
+    <div class="drawer__title">Menu</div>
+    <button class="drawer__close" aria-label="Fermer le menu">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <span class="drawer__section-label">Navigation</span>
+  <a href="/" class="drawer__link">Home<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/search.html" class="drawer__link is-active">Property<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/listing.html" class="drawer__link">Listing<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/booking.html" class="drawer__link">Booking<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/confirmation.html" class="drawer__link">Confirmation<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+</aside>
+</body>
+</html>

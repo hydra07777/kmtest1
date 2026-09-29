@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const browser = await chromium.launch();
+const page = await browser.newPage();
+page.on("console", m => console.log(`[${m.type()}] ${m.text()}`));
+page.on("pageerror", e => console.log(`[PAGE ERROR] ${e.message}`));
+await page.goto("http://127.0.0.1:4173/search.html", { waitUntil: "networkidle" });
+await page.waitForTimeout(2000);
+const html = await page.content();
+console.log("Has results-grid:", html.includes("results-grid"));
+console.log("Has result-card:", html.includes("result-card"));
+console.log("Cat chips innerHTML length:", await page.evaluate(() => document.getElementById("cat-chips")?.innerHTML.length || 0));
+await browser.close();

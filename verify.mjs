@@ -5,11 +5,11 @@ import fs from "node:fs";
 import path from "node:path";
 
 const PAGES = [
-  { name: "index",        url: "pages/index.html" },
-  { name: "search",       url: "pages/search.html" },
-  { name: "listing",      url: "pages/listing.html" },
-  { name: "booking",      url: "pages/booking.html" },
-  { name: "confirmation", url: "pages/confirmation.html" }
+  { name: "index",        url: "/" },
+  { name: "search",       url: "/search.html" },
+  { name: "listing",      url: "/listing.html" },
+  { name: "booking",      url: "/booking.html" },
+  { name: "confirmation", url: "/confirmation.html" }
 ];
 
 const VIEWPORTS = [
@@ -24,8 +24,8 @@ const base = "http://127.0.0.1:4173";
 
 let totals = { errors: 0, warnings: 0, overflow: 0, smallTouch: 0, missing: 0 };
 
-async function check(page, name, tag) {
-  const r = { name, tag, consoleErrors: [], failedRequests: [], overflow: 0, smallTouch: [] };
+async function check(page, name, url, tag) {
+  const r = { name, url, tag, consoleErrors: [], failedRequests: [], overflow: 0, smallTouch: [] };
   page.on("console", m => { if (m.type() === "error") r.consoleErrors.push(m.text()); });
   page.on("pageerror", e => r.consoleErrors.push("pageerror: " + e.message));
   page.on("requestfailed", req => {
@@ -36,7 +36,7 @@ async function check(page, name, tag) {
     const u = resp.url();
     if (u.startsWith(base) && resp.status() >= 400) r.failedRequests.push(`${resp.status()} ${u}`);
   });
-  await page.goto(`${base}/pages/${name}.html`, { waitUntil: "networkidle" });
+  await page.goto(`${base}${url}`, { waitUntil: "networkidle" });
 
   // Attendre que les animations aient atteint leur état final
   await page.waitForTimeout(1500);
@@ -91,7 +91,7 @@ async function check(page, name, tag) {
 async function parcours(page) {
   console.log("\n▶ Parcours landing → search → listing → booking → confirmation");
   // landing → search
-  await page.goto(`${base}/pages/index.html`, { waitUntil: "networkidle" });
+  await page.goto(`${base}/`, { waitUntil: "networkidle" });
   await page.waitForTimeout(1500);
   const exploreBtn = await page.$(".search-glass__btn");
   await exploreBtn.click();
@@ -128,7 +128,7 @@ for (const vp of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
   const page = await ctx.newPage();
   for (const p of PAGES) {
-    await check(page, p.name, vp.tag);
+    await check(page, p.name, p.url, vp.tag);
   }
   if (vp.tag === "desktop") await parcours(page);
   await ctx.close();

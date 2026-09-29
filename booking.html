@@ -8,22 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://images.unsplash.com/" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/tokens.css" />
-  <link rel="stylesheet" href="../styles/base.css" />
-  <link rel="stylesheet" href="../styles/components.css" />
-  <link rel="stylesheet" href="../styles/landing.css" />
-  <link rel="stylesheet" href="../styles/pages.css" />
 </head>
 <body>
 
 <header class="nav" role="banner">
   <div class="nav__inner">
-    <a href="./index.html" class="nav__brand"><span class="nav__brand-mark">K</span>Keliabe</a>
+    <a href="/" class="nav__brand"><span class="nav__brand-mark">K</span>Keliabe</a>
     <nav class="nav__links">
-      <a href="./index.html">Home</a>
-      <a href="search.html">Property</a>
+      <a href="/">Home</a>
+      <a href="/search.html">Property</a>
       <a href="#" onclick="event.preventDefault();">Add New Listing</a>
-      <a href="confirmation.html">Proposal</a>
+      <a href="/confirmation.html">Proposal</a>
     </nav>
     <div class="nav__icons">
       <button class="nav__menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer">
@@ -121,7 +116,7 @@
         <div class="booking-summary__row"><span>Frais de service</span><span class="mono">500 CDF</span></div>
         <div class="booking-summary__row booking-summary__row--total"><span>Total</span><span class="mono">9 500 CDF</span></div>
       </div>
-      <a href="confirmation.html" class="btn btn--primary btn--lg booking-card__cta">Confirmer et payer</a>
+      <a href="/confirmation.html" class="btn btn--primary btn--lg booking-card__cta">Confirmer et payer</a>
       <p class="booking-card__note">🔒 Paiement chiffré · Airtel Money</p>
     </aside>
 
@@ -131,22 +126,14 @@
 <footer class="footer">
   <div class="footer__inner">
     <div><div class="nav__brand"><span class="nav__brand-mark">K</span>Keliabe</div><p class="footer__brand-tagline">La plateforme de réservation touristique de la RDC.</p></div>
-    <div class="footer__col"><h4>Découvrir</h4><ul><li><a href="search.html">Kinshasa</a></li><li><a href="#">Goma</a></li><li><a href="#">Lubumbashi</a></li></ul></div>
+    <div class="footer__col"><h4>Découvrir</h4><ul><li><a href="/search.html">Kinshasa</a></li><li><a href="#">Goma</a></li><li><a href="#">Lubumbashi</a></li></ul></div>
     <div class="footer__col"><h4>Hôtes</h4><ul><li><a href="#">Devenir hôte</a></li><li><a href="#">Ressources</a></li></ul></div>
     <div class="footer__col"><h4>Compagnie</h4><ul><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul></div>
   </div>
   <div class="footer__bottom"><div>© 2026 Keliabe · Kinshasa, RDC</div><div>Confidentialité · Conditions</div></div>
 </footer>
 
-<script src="../scripts/nav.js"></script>
-<script>
-  document.querySelectorAll(".pay-method").forEach(el => {
-    el.addEventListener("click", () => {
-      document.querySelectorAll(".pay-method").forEach(x => x.classList.remove("is-active"));
-      el.classList.add("is-active");
-    });
-  });
-</script>
+<script type="module" src="/src/scripts/booking.entry.js"></script>
 
 <!-- DRAWER MOBILE -->
 <div class="drawer-overlay" aria-hidden="true"></div>
@@ -158,11 +145,11 @@
     </button>
   </div>
   <span class="drawer__section-label">Navigation</span>
-  <a href="./index.html" class="drawer__link">Home<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
-  <a href="search.html" class="drawer__link">Property<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
-  <a href="listing.html" class="drawer__link">Listing<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
-  <a href="booking.html" class="drawer__link is-active">Booking<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
-  <a href="confirmation.html" class="drawer__link">Confirmation<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/" class="drawer__link">Home<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/search.html" class="drawer__link">Property<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/listing.html" class="drawer__link">Listing<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/booking.html" class="drawer__link is-active">Booking<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+  <a href="/confirmation.html" class="drawer__link">Confirmation<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
 </aside>
 </body>
 </html>
