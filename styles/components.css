@@ -1,0 +1,173 @@
+/* ============================================================
+   Keliabe — components.css
+   Boutons, inputs, badges, cartes.
+   ============================================================ */
+
+/* ----- Boutons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: 14px 26px;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: var(--t-base);
+  letter-spacing: -0.01em;
+  transition:
+    transform var(--d-fast) var(--ease-out),
+    background-color var(--d-base) var(--ease-out),
+    color var(--d-base) var(--ease-out),
+    border-color var(--d-base) var(--ease-out),
+    box-shadow var(--d-base) var(--ease-out);
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn--primary {
+  background: var(--sang);
+  color: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover {
+  background: var(--sang-deep);
+  box-shadow: var(--shadow);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn--ghost:hover {
+  background: var(--paper-elev);
+  border-color: var(--ink);
+}
+
+.btn--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn--ink:hover { background: var(--ink-soft); }
+
+.btn--paper {
+  background: var(--paper-elev);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn--paper:hover { box-shadow: var(--shadow); }
+
+.btn--sm { padding: 10px 18px; font-size: var(--t-sm); }
+.btn--lg { padding: 18px 34px; font-size: var(--t-md); }
+
+/* ----- Inputs ----- */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--paper-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font: inherit;
+  color: var(--ink);
+  transition: border-color var(--d-base) var(--ease-out), box-shadow var(--d-base) var(--ease-out);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(14, 14, 16, 0.06);
+}
+
+.field-label {
+  display: block;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gris);
+  margin-bottom: 6px;
+}
+
+/* ----- Badges ----- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--paper-elev);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.badge--sang { background: var(--sang); color: var(--paper); border-color: transparent; }
+.badge--ocre { background: var(--ocre); color: var(--paper); border-color: transparent; }
+.badge--fleuve { background: var(--fleuve); color: var(--paper); border-color: transparent; }
+.badge--seve { background: var(--seve); color: var(--paper); border-color: transparent; }
+.badge--ink { background: var(--ink); color: var(--paper); border-color: transparent; }
+
+.badge-dot::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+/* ----- Cartes ----- */
+.card {
+  background: var(--paper-elev);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--d-base) var(--ease-out),
+    box-shadow var(--d-base) var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.card__media {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--paper-warm);
+}
+.card__media img,
+.card__media svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+.card:hover .card__media img,
+.card:hover .card__media svg { transform: scale(1.04); }
+
+.card__body { padding: var(--s-4) var(--s-5); }
+.card__title { font-size: var(--t-md); font-weight: 600; }
+.card__meta { color: var(--gris); font-size: var(--t-sm); margin-top: 4px; }
+.card__price {
+  margin-top: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  color: var(--ink);
+}
+
+/* Touch devices : pas de hover translate */
+@media (hover: none) {
+  .card:hover { transform: none; }
+  .card:hover .card__media img,
+  .card:hover .card__media svg { transform: none; }
+}
+
+/* ----- Divider ----- */
+.divider {
+  height: 1px;
+  background: var(--line);
+  border: none;
+  margin: 0;
+}

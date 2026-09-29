@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lieu — Keliabe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/landing.css" />
+  <style>
+    .listing-hero {
+      padding-top: calc(var(--nav-h) + var(--s-6));
+      padding-bottom: var(--s-6);
+    }
+    .listing-hero__visual {
+      height: 380px;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--paper-warm);
+    }
+    .listing-hero__visual svg { width: 100%; height: 100%; }
+    .listing-body {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: var(--s-7);
+      padding: var(--s-7) 0 var(--s-9);
+    }
+    @media (max-width: 960px) { .listing-body { grid-template-columns: 1fr; } }
+    .listing-meta-row {
+      display: flex;
+      gap: var(--s-3);
+      align-items: center;
+      margin-bottom: var(--s-3);
+      flex-wrap: wrap;
+    }
+    .listing-meta-row .meta-item {
+      font-size: var(--t-sm);
+      color: var(--gris);
+    }
+    .booking-card {
+      position: sticky;
+      top: calc(var(--nav-h) + 16px);
+      align-self: start;
+      background: var(--paper-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: var(--s-5);
+      box-shadow: var(--shadow);
+    }
+    .booking-card__price {
+      font-family: var(--font-display);
+      font-size: var(--t-2xl);
+      font-weight: 500;
+      margin-bottom: var(--s-4);
+    }
+    .booking-card__price small {
+      font-family: var(--font-sans);
+      font-size: var(--t-sm);
+      font-weight: 400;
+      color: var(--gris);
+    }
+    .booking-field {
+      margin-bottom: var(--s-3);
+    }
+    .booking-summary {
+      margin: var(--s-4) 0;
+      padding: var(--s-4) 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: var(--t-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .booking-summary__row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .booking-summary__row--total {
+      font-family: var(--font-display);
+      font-size: var(--t-md);
+      font-weight: 600;
+      color: var(--ink);
+      margin-top: var(--s-2);
+    }
+    .amenities {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--s-3);
+      margin-top: var(--s-4);
+    }
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: var(--t-sm);
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="./index.html" class="nav__brand">
+      <span class="nav__brand-mark">K</span>Keliabe
+      <span class="nav__brand-flag"></span>
+    </a>
+    <nav class="nav__links">
+      <a href="./index.html#categories">Explorer</a>
+      <a href="./listing.html">Hôtes</a>
+      <a href="./index.html#why">Aide</a>
+    </nav>
+    <div class="nav__cta">
+      <a href="#" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="#" class="btn btn--primary btn--sm">S'inscrire</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="listing-hero">
+    <a href="search.html" style="font-size: var(--t-sm); color: var(--gris); display: inline-flex; gap: 4px; align-items: center; margin-bottom: var(--s-3);">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      Retour aux résultats
+    </a>
+    <div id="hero-visual" class="listing-hero__visual"></div>
+  </section>
+
+  <section class="listing-body">
+
+    <div>
+      <div class="listing-meta-row" id="meta-row"></div>
+      <h1 id="listing-title" style="margin-bottom: var(--s-3);"></h1>
+      <p id="listing-desc" style="color: var(--gris); font-size: var(--t-md); max-width: 60ch;"></p>
+
+      <hr class="divider" style="margin: var(--s-6) 0;"/>
+
+      <h3>Ce lieu propose</h3>
+      <div class="amenities" id="amenities" style="margin-top: var(--s-4);"></div>
+
+      <hr class="divider" style="margin: var(--s-6) 0;"/>
+
+      <h3>À propos de l'hôte</h3>
+      <div style="display: flex; gap: var(--s-4); align-items: center; margin-top: var(--s-4);">
+        <div class="testi__avatar" style="width: 56px; height: 56px;">MK</div>
+        <div>
+          <div style="font-weight: 600;">Maman Koko</div>
+          <div style="color: var(--gris); font-size: var(--t-sm);">Hôte depuis 2022 · Réponse en moins d'1h</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="booking-card">
+      <div class="booking-card__price" id="booking-price">— CDF <small>/ nuit</small></div>
+      <div class="booking-field">
+        <span class="field-label">Arrivée</span>
+        <input class="input" type="date" />
+      </div>
+      <div class="booking-field">
+        <span class="field-label">Départ</span>
+        <input class="input" type="date" />
+      </div>
+      <div class="booking-field">
+        <span class="field-label">Personnes</span>
+        <select class="input">
+          <option>1 personne</option>
+          <option>2 personnes</option>
+          <option>3 personnes</option>
+          <option>4 personnes</option>
+          <option>5+ personnes</option>
+        </select>
+      </div>
+      <div class="booking-summary">
+        <div class="booking-summary__row"><span>2 nuits × 18 500 CDF</span><span class="mono">37 000 CDF</span></div>
+        <div class="booking-summary__row"><span>Frais de service</span><span class="mono">2 500 CDF</span></div>
+        <div class="booking-summary__row booking-summary__row--total"><span>Total</span><span class="mono">39 500 CDF</span></div>
+      </div>
+      <a href="./booking.html" class="btn btn--primary btn--lg" style="width: 100%;">Réserver</a>
+      <p style="text-align: center; color: var(--gris); font-size: var(--t-xs); margin-top: var(--s-3);">Annulation gratuite jusqu'à 24h avant</p>
+    </aside>
+
+  </section>
+</main>
+
+<script src="../scripts/data.js"></script>
+<script>
+(function () {
+  const D = window.KE_DATA;
+  if (!D) return;
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id") || D.phares[0].id;
+  const p = D.phares.find(x => x.id === id) || D.phares[0];
+
+  // Hero visuel : SVG dégradé + motif
+  document.getElementById("hero-visual").innerHTML = `
+    <svg viewBox="0 0 800 380" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+      <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${p.gradient[0]}"/>
+        <stop offset="100%" stop-color="${p.gradient[2]}"/>
+      </linearGradient></defs>
+      <rect width="800" height="380" fill="url(#hg)"/>
+      <g fill="rgba(250,247,242,0.10)">
+        <polygon points="200,120 240,160 200,200 160,160"/>
+        <polygon points="600,200 640,240 600,280 560,240"/>
+        <polygon points="400,260 440,300 400,340 360,300"/>
+      </g>
+    </svg>
+  `;
+
+  document.getElementById("meta-row").innerHTML = `
+    <span class="badge badge-dot">Hôte vérifié</span>
+    <span class="meta-item">★ 4,${Math.floor(Math.random()*9)+1} · 124 avis</span>
+    <span class="meta-item mono">${p.meta}</span>
+  `;
+  document.getElementById("listing-title").textContent = p.title;
+  document.getElementById("listing-desc").textContent =
+    "Un lieu emblématique du quartier, plébiscité par les Kinois et les visiteurs. Ambiance authentique, cuisine locale, service attentionné — tout est là pour un séjour mémorable.";
+  document.getElementById("booking-price").innerHTML = `${(p.price || 0).toLocaleString("fr-FR")} CDF <small>/ ${p.meta.includes("Hôtel") ? "nuit" : "personne"}</small>`;
+
+  const am = ["Wifi gratuit", "Climatisation", "Petit-déjeuner", "Paiement Airtel Money", "Accueil 24/7", "Annulation 24h"];
+  document.getElementById("amenities").innerHTML = am.map(a => `
+    <div class="amenity">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12 L 10 17 L 20 7"/></svg>
+      ${a}
+    </div>
+  `).join("");
+})();
+</script>
+</body>
+</html>

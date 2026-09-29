@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keliabe — Découvre, réserve, vis la RDC</title>
+  <meta name="description" content="Réserve hôtels, restaurants, cafés, expériences et événements en RDC. Kinshasa, Goma, Lubumbashi. Paiement en Francs Congolais." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/landing.css" />
+</head>
+<body>
+
+<!-- ============================================================
+       NAV (pleine largeur, hors frame)
+       ============================================================ -->
+  <header class="nav" role="banner">
+    <div class="nav__inner">
+      <a href="./index.html" class="nav__brand" aria-label="Keliabe, accueil">
+        <span class="nav__brand-mark">K</span>
+        Keliabe
+      </a>
+      <nav class="nav__links" aria-label="Principale">
+        <a href="./index.html" class="is-active">Home</a>
+        <a href="search.html">Property</a>
+        <a href="#" onclick="event.preventDefault(); document.querySelector('.section').scrollIntoView({behavior:'smooth'});">Add New Listing</a>
+        <a href="#" onclick="event.preventDefault(); document.querySelector('.cta').scrollIntoView({behavior:'smooth'});">Proposal</a>
+      </nav>
+      <div class="nav__icons">
+        <button class="nav__icon-btn" aria-label="Rechercher">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="nav__icon-btn" aria-label="Notifications">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+        </button>
+        <button class="nav__icon-btn" aria-label="Menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO PLEIN ÉCRAN (hors frame)
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <h1 class="hero__title">
+        <span class="hero__title-word" data-anim="word">Simplifying</span>
+        <span class="hero__title-word" data-anim="word">travel</span>
+        <span class="hero__title-word" data-anim="word">booking</span>
+        <span class="hero__title-word" data-anim="word">across</span>
+        <span class="hero__title-word" data-anim="word">the&nbsp;DRC.</span>
+      </h1>
+
+      <p class="hero__sub" data-anim="sub">
+        Automatisez la recherche, comparez les prix et réservez en quelques secondes —
+        la plateforme pensée pour les voyageurs et hôtes en RDC.
+      </p>
+
+      <button class="hero__cta" data-anim="cta">Request a Demo</button>
+    </div>
+
+    <!-- Cartes glass flottantes -->
+    <div class="hero__float hero__float--sales" data-anim="float-sales">
+      <div class="hero__float-title">Sales Indicator</div>
+      <div class="pct">36%<small>Sales</small></div>
+      <div style="font-size: 10px; color: var(--gris); margin-top: 6px;">Today's total sales: 927</div>
+      <div class="bar"></div>
+      <div class="label">Total Revenue: $120,000</div>
+    </div>
+
+    <div class="hero__float hero__float--submission" data-anim="float-submission">
+      <div class="hero__float-title">Submission</div>
+      <div class="hero__gauge">
+        <svg viewBox="0 0 120 64">
+          <defs>
+            <linearGradient id="gauge" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#6FB4C7"/>
+              <stop offset="100%" stop-color="#3D8597"/>
+            </linearGradient>
+          </defs>
+          <path d="M 10 60 A 50 50 0 0 1 110 60" fill="none" stroke="rgba(27, 58, 74, 0.12)" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 10 60 A 50 50 0 0 1 96 22" fill="none" stroke="url(#gauge)" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="hero__gauge-val">72%</div>
+      <div class="label">Property listing</div>
+      <div style="font-size: 10px; color: var(--gris); margin-top: 4px;">Track earnings from each listing</div>
+    </div>
+
+    <div class="hero__float hero__float--prop" data-anim="float-prop">
+      <div style="display: flex; justify-content: space-between; align-items: start;">
+        <h4>Modern Farmhouse</h4>
+        <span class="price-tag">$225,000.00</span>
+      </div>
+      <div style="clear: both;"></div>
+      <div class="thumb-row">
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+      </div>
+      <div class="summary">Inspired by classic New England architecture, this design pays tribute to the past while embracing a fresh and new future. Imagine soft blue accents in a field of greenery.</div>
+      <div class="details">
+        <span class="pill">1,200 sq ft</span>
+        <span class="pill">3 bed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BARRE SEARCH GLASS (sous le hero)
+       ============================================================ -->
+  <form class="search-glass" data-anim="search" onsubmit="event.preventDefault(); window.location.href='search.html';">
+    <div class="search-glass__field">
+      <div class="search-glass__field-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-7.5 8-13a8 8 0 0 0-16 0c0 5.5 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Location
+      </div>
+      <div class="search-glass__field-value">Kinshasa, RDC</div>
+    </div>
+    <div class="search-glass__field">
+      <div class="search-glass__field-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-6 9 6v12H3z"/><path d="M9 21V12h6v9"/></svg>
+        Property Type
+      </div>
+      <div class="search-glass__field-value">Tout type</div>
+    </div>
+    <div class="search-glass__field">
+      <div class="search-glass__field-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Price Range
+      </div>
+      <div class="search-glass__field-value">2 500 – 50 000 CDF</div>
+    </div>
+    <div class="search-glass__field">
+      <div class="search-glass__field-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M22 4v16M2 12h20"/></svg>
+        Quartier
+      </div>
+      <div class="search-glass__field-value">Gombe, Bandal…</div>
+    </div>
+    <button class="search-glass__btn" type="submit">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      Search
+    </button>
+  </form>
+
+  <!-- ============================================================
+       SUITE (frame arrondi)
+       ============================================================ -->
+  <div class="frame frame--body">
+
+<!-- ============================================================
+     SECTION PROJETS RÉCENTS (Bento glass cards)
+     ============================================================ -->
+<section class="section">
+  <div class="section__eyebrow">Latest Project</div>
+  <h2 class="section__title">Recent Projects Powered<br/>by Local Curation</h2>
+  <div class="bento" id="bento"></div>
+</section>
+
+<!-- ============================================================
+     TÉMOIGNAGES GLASS
+     ============================================================ -->
+<section class="testi">
+  <div class="testi__inner">
+    <div class="section__eyebrow">Ce qu'ils en disent</div>
+    <h2 class="section__title">Déjà adopté par<br/>12 000 Kinois.</h2>
+    <div class="testi__grid" id="testi-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta">
+  <div class="cta__inner">
+    <span class="eyebrow eyebrow--ocre" style="color: var(--ocean);">Prêt à partir ?</span>
+    <h2>Ton prochain voyage<br/>commence ici.</h2>
+    <p>Keliabe est gratuit pour les voyageurs. Crée ton compte et reçois des recommandations adaptées à ton quartier et ton budget.</p>
+    <div class="cta__actions">
+      <a href="#" class="hero__cta">Commencer</a>
+      <a href="#" class="hero__cta" style="background: rgba(255,255,255,0.1); color: var(--paper-elev);">Devenir hôte</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="nav__brand">
+        <span class="nav__brand-mark">K</span>
+        Keliabe
+      </div>
+      <p class="footer__brand-tagline">La plateforme de réservation touristique de la RDC. Made in Kinshasa, partout au Congo.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Découvrir</h4>
+      <ul>
+        <li><a href="search.html">Kinshasa</a></li>
+        <li><a href="#">Goma</a></li>
+        <li><a href="#">Lubumbashi</a></li>
+        <li><a href="#">Bukavu</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Hôtes</h4>
+      <ul>
+        <li><a href="#">Devenir hôte</a></li>
+        <li><a href="#">Ressources</a></li>
+        <li><a href="#">Communauté</a></li>
+        <li><a href="#">Forum hôte</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Compagnie</h4>
+      <ul>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Carrières</a></li>
+        <li><a href="#">Presse</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div>© 2026 Keliabe · Kinshasa, RDC</div>
+    <div>Confidentialité · Conditions</div>
+  </div>
+</footer>
+
+</div><!-- /.frame.frame--body -->
+
+<!-- ============================================================
+     DATA
+     ============================================================ -->
+<script src="../scripts/data.js"></script>
+
+<!-- ============================================================
+     RENDER
+     ============================================================ -->
+<script>
+(function () {
+  const D = window.KE_DATA;
+  if (!D) return;
+
+  // Bento
+  const bentoEl = document.getElementById("bento");
+  if (bentoEl) {
+    const items = D.phares.slice(0, 5).map((p, i) => {
+      // Chaque carte a un ton très distinct pour casser la monotonie bleu/bleu
+      const tones = [
+        { g: ["#1B3A4A", "#3D8597"], label: "Hôtel · premium" },          // sombre sarcelle
+        { g: ["#B8DCEB", "#6FB4C7"], label: "Café · clair" },               // ciel clair
+        { g: ["#C97B3C", "#E0A064"], label: "Restaurant · chaud" },         // ocre (accent chaud)
+        { g: ["#2E8B57", "#5BAE7E"], label: "Expérience · nature" },        // vert sève
+        { g: ["#0E1B22", "#2E6275"], label: "Événement · nuit" }            // nuit profonde
+      ];
+      const { g, label } = tones[i] || tones[0];
+      const [g1, g2] = g;
+      return `
+        <a href="listing.html?id=${p.id}" class="bento__card">
+          <div class="bento__card-media" style="background: linear-gradient(135deg, ${g1}, ${g2});">
+            <svg viewBox="0 0 400 300" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="opacity:0.35;">
+              <polygon points="100,150 180,90 260,150 260,260 100,260" fill="none" stroke="white" stroke-width="1.5"/>
+              <rect x="140" y="180" width="40" height="50" fill="white" opacity="0.5"/>
+              <rect x="200" y="180" width="40" height="50" fill="white" opacity="0.5"/>
+              <circle cx="320" cy="60" r="20" fill="white" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="bento__card-body">
+            <div class="bento__card-title">${p.title}</div>
+            <div class="bento__card-meta">${label}${p.price ? " · " + p.price.toLocaleString("fr-FR") + " CDF" : ""}</div>
+          </div>
+        </a>
+      `;
+    }).join("");
+    bentoEl.innerHTML = items;
+  }
+
+  // Testimonials glass cards
+  const testiEl = document.getElementById("testi-grid");
+  if (testiEl) {
+    testiEl.innerHTML = D.testimonials.slice(0, 3).map(t => `
+      <article class="glass-card">
+        <p class="glass-card__quote">"${t.quote}"</p>
+        <div class="glass-card__author">
+          <div class="glass-card__avatar">${t.initials}</div>
+          <div>
+            <div class="glass-card__name">${t.name}</div>
+            <div class="glass-card__role">${t.role}</div>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+})();
+</script>
+
+<!-- ============================================================
+     MOTION
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="../scripts/motion.js"></script>
+<script src="../scripts/landing.js"></script>
+<script>
+(function () {
+  // Animations spécifiques à cette landing (glass + bleu)
+  const KE_MOTION = window.KE_MOTION;
+  if (!KE_MOTION || !window.gsap) return;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const gsap = window.gsap;
+
+  if (!reduced) {
+    // Hero title : stagger reveal des mots
+    const words = document.querySelectorAll("[data-anim=word]");
+    gsap.from(words, {
+      yPercent: 100,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.06,
+      delay: 0.2
+    });
+    gsap.from("[data-anim=sub]", { y: 16, opacity: 0, duration: 0.7, ease: "power3.out", delay: 0.7 });
+    gsap.from("[data-anim=cta]", { y: 12, opacity: 0, duration: 0.6, ease: "power3.out", delay: 0.85 });
+
+    // Cartes glass flottantes : entrée échelonnée
+    gsap.from("[data-anim=float-sales]",     { x: -40, y: 20, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.0 });
+    gsap.from("[data-anim=float-submission]",{ x:  40, y: 20, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.1 });
+    gsap.from("[data-anim=float-prop]",      { x:  40, y: 40, opacity: 0, duration: 0.9, ease: "power3.out", delay: 1.2 });
+
+    // Barre search glass
+    gsap.from("[data-anim=search]", { y: 24, opacity: 0, duration: 0.8, ease: "power3.out", delay: 1.3 });
+  }
+
+  // Parallax léger sur le hero + cartes glass au scroll
+  if (!reduced && window.ScrollTrigger) {
+    const st = window.ScrollTrigger;
+
+    gsap.to(".hero__bg", {
+      yPercent: 10,
+      ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 }
+    });
+
+    gsap.to(".hero__float--sales", {
+      yPercent: -30,
+      ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 }
+    });
+    gsap.to(".hero__float--submission", {
+      yPercent: -20,
+      ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 }
+    });
+    gsap.to(".hero__float--prop", {
+      yPercent: -15,
+      ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 }
+    });
+
+    // Bento reveal
+    gsap.from(".bento__card", {
+      opacity: 0,
+      y: 40,
+      clipPath: "inset(0 0 100% 0)",
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.1,
+      scrollTrigger: { trigger: ".bento", start: "top 80%", once: true }
+    });
+
+    // Testimonials glass
+    gsap.from(".glass-card", {
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      ease: "power2.out",
+      stagger: 0.1,
+      scrollTrigger: { trigger: ".testi__grid", start: "top 80%", once: true }
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinshasa · Résultats — Keliabe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/landing.css" />
+  <style>
+    .search-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--s-6);
+      padding-top: var(--s-7);
+      padding-bottom: var(--s-9);
+    }
+    @media (max-width: 960px) { .search-layout { grid-template-columns: 1fr; } }
+    .filters {
+      position: sticky;
+      top: calc(var(--nav-h) + 16px);
+      align-self: start;
+      background: var(--paper-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: var(--s-5);
+    }
+    .filters h3 {
+      font-family: var(--font-sans);
+      font-size: var(--t-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: var(--s-3);
+    }
+    .filters__group { margin-bottom: var(--s-5); }
+    .filters__chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--line);
+      background: var(--paper-elev);
+      font-size: var(--t-sm);
+      cursor: pointer;
+      transition: background-color var(--d-base) var(--ease-out), border-color var(--d-base) var(--ease-out);
+      margin: 0 6px 8px 0;
+      min-height: 44px;
+    }
+    .filters__chip.is-active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .filters__chip:hover { border-color: var(--ink); }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-4);
+    }
+    @media (max-width: 960px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .results-grid { grid-template-columns: 1fr; } }
+    .results-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: var(--s-5);
+      gap: var(--s-3);
+      flex-wrap: wrap;
+    }
+    .results-count { color: var(--gris); font-size: var(--t-sm); }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="./index.html" class="nav__brand">
+      <span class="nav__brand-mark">K</span>Keliabe
+      <span class="nav__brand-flag"></span>
+    </a>
+    <nav class="nav__links">
+      <a href="./index.html#categories">Explorer</a>
+      <a href="./listing.html">Hôtes</a>
+      <a href="./index.html#why">Aide</a>
+    </nav>
+    <div class="nav__cta">
+      <a href="#" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="#" class="btn btn--primary btn--sm">S'inscrire</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="search-layout">
+
+    <aside class="filters" aria-label="Filtres">
+      <div class="filters__group">
+        <h3>Catégorie</h3>
+        <div id="cat-chips"></div>
+      </div>
+      <div class="filters__group">
+        <h3>Quartier</h3>
+        <div id="q-chips"></div>
+      </div>
+      <div class="filters__group">
+        <h3>Budget</h3>
+        <div>
+          <button class="filters__chip" data-price="all">Tous</button>
+          <button class="filters__chip" data-price="low">- 5000 CDF</button>
+          <button class="filters__chip" data-price="mid">5-15k CDF</button>
+          <button class="filters__chip" data-price="high">15k+ CDF</button>
+        </div>
+      </div>
+    </aside>
+
+    <section>
+      <div class="results-head">
+        <div>
+          <span class="eyebrow eyebrow--sang">Kinshasa</span>
+          <h2 style="margin-top: 8px;">Phares disponibles</h2>
+        </div>
+        <div class="results-count" id="results-count">— lieux</div>
+      </div>
+      <div class="results-grid" id="results"></div>
+    </section>
+
+  </div>
+</main>
+
+<script src="../scripts/data.js"></script>
+<script>
+(function () {
+  const D = window.KE_DATA;
+  if (!D) return;
+
+  // Lire l'URL ?cat=
+  const params = new URLSearchParams(window.location.search);
+  const urlCat = params.get("cat");
+
+  let activeCat = urlCat || "all";
+  let activeQuartier = "all";
+  let activePrice = "all";
+
+  const catLabels = {
+    all: "Tout",
+    hotel: "Hôtels",
+    restaurant: "Restaurants",
+    cafe: "Cafés",
+    experience: "Expériences",
+    evenement: "Événements"
+  };
+
+  // Rendu des chips
+  const catChips = document.getElementById("cat-chips");
+  catChips.innerHTML = Object.keys(catLabels).map(k =>
+    `<button class="filters__chip ${activeCat === k ? "is-active" : ""}" data-cat="${k}">${catLabels[k]}</button>`
+  ).join("");
+
+  const qChips = document.getElementById("q-chips");
+  qChips.innerHTML = `<button class="filters__chip is-active" data-q="all">Tous</button>` +
+    D.quartiers.map(q =>
+      `<button class="filters__chip" data-q="${q.id}">${q.name}</button>`
+    ).join("");
+
+  // Rendu des cartes
+  function render() {
+    const list = D.phares.filter(p => {
+      const qOk = activeQuartier === "all" || p.meta.toLowerCase().includes(activeQuartier);
+      let pOk = true;
+      if (activePrice === "low")  pOk = p.price > 0 && p.price <= 5000;
+      if (activePrice === "mid")  pOk = p.price > 5000 && p.price <= 15000;
+      if (activePrice === "high") pOk = p.price > 15000;
+      let cOk = activeCat === "all";
+      if (activeCat === "hotel")      cOk = /Hôtel/.test(p.meta);
+      if (activeCat === "restaurant") cOk = /Restaurant/.test(p.meta);
+      if (activeCat === "cafe")       cOk = /Café/.test(p.meta);
+      if (activeCat === "experience") cOk = /Expérience/.test(p.meta);
+      if (activeCat === "evenement")  cOk = /Événement/.test(p.meta);
+      return qOk && pOk && cOk;
+    });
+
+    document.getElementById("results-count").textContent = `${list.length} lieux`;
+
+    const results = document.getElementById("results");
+    if (!list.length) {
+      results.innerHTML = `<div style="grid-column: 1/-1; padding: var(--s-7); text-align: center; color: var(--gris);">Aucun lieu ne correspond. Essaie d'élargir tes filtres.</div>`;
+      return;
+    }
+    results.innerHTML = list.map(p => `
+      <a href="./listing.html?id=${p.id}" class="card">
+        <div class="card__media" style="background: linear-gradient(135deg, ${p.gradient[0]}, ${p.gradient[2]});"></div>
+        <div class="card__body">
+          <div class="card__title">${p.title}</div>
+          <div class="card__meta">${p.meta}</div>
+          <div class="card__price">${p.price ? p.price.toLocaleString("fr-FR") + " CDF" : "Gratuit"}</div>
+        </div>
+      </a>
+    `).join("");
+  }
+
+  // Listeners
+  document.querySelectorAll("[data-cat]").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("[data-cat]").forEach(x => x.classList.remove("is-active"));
+      b.classList.add("is-active");
+      activeCat = b.dataset.cat;
+      render();
+    });
+  });
+  document.querySelectorAll("[data-q]").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("[data-q]").forEach(x => x.classList.remove("is-active"));
+      b.classList.add("is-active");
+      activeQuartier = b.dataset.q === "all" ? "all" : b.dataset.q;
+      render();
+    });
+  });
+  document.querySelectorAll("[data-price]").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll("[data-price]").forEach(x => x.classList.remove("is-active"));
+      b.classList.add("is-active");
+      activePrice = b.dataset.price;
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

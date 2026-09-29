@@ -1,0 +1,86 @@
+/* ============================================================
+   Keliabe — tokens.css
+   Toutes les couleurs, typos, rayons, ombres, espacements.
+   Ne JAMAIS utiliser une couleur en dur dans le reste du code.
+   ============================================================ */
+
+:root {
+  /* Couleurs — palette ZenSpace (ciel, océan, glass) */
+  --sky:        #B8DCEB;   /* bleu ciel clair */
+  --sky-soft:   #DCEEF5;   /* bleu très clair */
+  --ocean:      #6FB4C7;   /* turquoise océan */
+  --ocean-deep: #3D8597;   /* sarcelle profond */
+  --teal:       #2E6275;   /* bleu nuit */
+  --navy:       #1B3A4A;   /* encre bleue, pour accents sombres */
+  --ink:        #0E1B22;   /* presque noir bleuté */
+  --ink-soft:   #1A2A33;
+  --paper:      #F4F8FA;   /* ivoire bleuté */
+  --paper-elev: #FFFFFF;
+  --paper-warm: #EDF3F6;
+  --gris:       #5A6B73;   /* gris bleuté */
+  --gris-soft:  #92A2A9;
+
+  /* Glass tokens */
+  --glass-bg:        rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-border:    rgba(255, 255, 255, 0.65);
+  --glass-shadow:    0 8px 32px rgba(27, 58, 74, 0.12);
+
+  --line: rgba(27, 58, 74, 0.10);
+
+  /* Typo */
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Échelle modulaire (ratio 1.25, base 16px) */
+  --t-xs: 0.75rem;    /* 12 */
+  --t-sm: 0.875rem;   /* 14 */
+  --t-base: 1rem;     /* 16 */
+  --t-md: 1.125rem;   /* 18 */
+  --t-lg: 1.375rem;   /* 22 */
+  --t-xl: 1.75rem;    /* 28 */
+  --t-2xl: 2.25rem;   /* 36 */
+  --t-3xl: 2.875rem;  /* 46 */
+  --t-4xl: 3.75rem;   /* 60 */
+  --t-5xl: 4.75rem;   /* 76 */
+
+  /* Espacement (multiple de 4px) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* Rayons */
+  --r-sm: 8px;
+  --r:    14px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* Ombres — toujours douces */
+  --shadow-sm: 0 1px 2px rgba(14, 14, 16, 0.04), 0 2px 6px rgba(14, 14, 16, 0.04);
+  --shadow:    0 2px 8px rgba(14, 14, 16, 0.06), 0 8px 24px rgba(14, 14, 16, 0.06);
+  --shadow-lg: 0 8px 24px rgba(14, 14, 16, 0.08), 0 24px 64px rgba(14, 14, 16, 0.10);
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Durées */
+  --d-fast: 160ms;
+  --d-base: 200ms;
+  --d-slow: 320ms;
+
+  /* Layout */
+  --nav-h: 72px;
+  --content-max: 1440px;
+  --gutter: clamp(16px, 4vw, 48px);
+}

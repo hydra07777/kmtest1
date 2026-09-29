@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réservation — Keliabe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/landing.css" />
+  <style>
+    .booking-page {
+      padding: calc(var(--nav-h) + var(--s-7)) 0 var(--s-9);
+    }
+    .steps {
+      display: flex;
+      gap: var(--s-3);
+      margin-bottom: var(--s-6);
+      font-size: var(--t-sm);
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gris);
+    }
+    .step__num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--paper-warm);
+      color: var(--gris);
+      display: grid; place-items: center;
+      font-size: var(--t-xs);
+      font-weight: 600;
+    }
+    .step.is-active .step__num { background: var(--ink); color: var(--paper); }
+    .step.is-active { color: var(--ink); font-weight: 500; }
+    .step.is-done .step__num { background: var(--seve); color: var(--paper); }
+    .step.is-done { color: var(--ink); }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: var(--s-7);
+    }
+    @media (max-width: 960px) { .booking-grid { grid-template-columns: 1fr; } }
+
+    .section-card {
+      background: var(--paper-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: var(--s-6);
+      margin-bottom: var(--s-5);
+    }
+    .section-card h2 { margin-bottom: var(--s-4); font-size: var(--t-xl); }
+
+    .pay-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-3);
+      margin-top: var(--s-3);
+    }
+    .pay-method {
+      padding: var(--s-4);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      transition: border-color var(--d-base) var(--ease-out);
+      text-align: center;
+      font-size: var(--t-sm);
+      font-weight: 500;
+    }
+    .pay-method.is-active { border-color: var(--ink); background: var(--paper-warm); }
+    .pay-method:hover { border-color: var(--ink); }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="./index.html" class="nav__brand">
+      <span class="nav__brand-mark">K</span>Keliabe
+      <span class="nav__brand-flag"></span>
+    </a>
+    <nav class="nav__links">
+      <a href="./index.html#categories">Explorer</a>
+      <a href="./listing.html">Hôtes</a>
+      <a href="./index.html#why">Aide</a>
+    </nav>
+    <div class="nav__cta">
+      <a href="#" class="btn btn--ghost btn--sm">Connexion</a>
+      <a href="#" class="btn btn--primary btn--sm">S'inscrire</a>
+    </div>
+  </div>
+</header>
+
+<main class="container booking-page">
+  <div class="steps">
+    <div class="step is-done">
+      <span class="step__num">✓</span>
+      Choix du lieu
+    </div>
+    <div class="step is-active">
+      <span class="step__num">2</span>
+      Paiement
+    </div>
+    <div class="step">
+      <span class="step__num">3</span>
+      Confirmation
+    </div>
+  </div>
+
+  <div class="booking-grid">
+
+    <div>
+      <div class="section-card">
+        <h2>Vos informations</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3);" class="form-grid">
+          <div>
+            <span class="field-label">Prénom</span>
+            <input class="input" type="text" placeholder="Patience" />
+          </div>
+          <div>
+            <span class="field-label">Nom</span>
+            <input class="input" type="text" placeholder="Kalume" />
+          </div>
+          <div style="grid-column: 1/-1;">
+            <span class="field-label">Email</span>
+            <input class="input" type="email" placeholder="patience@keliabe.cd" />
+          </div>
+          <div style="grid-column: 1/-1;">
+            <span class="field-label">Téléphone</span>
+            <input class="input" type="tel" placeholder="+243 81 234 5678" />
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h2>Mode de paiement</h2>
+        <p style="color: var(--gris); font-size: var(--t-sm);">Choisissez votre mode de paiement préféré.</p>
+        <div class="pay-methods">
+          <div class="pay-method is-active">
+            <div style="font-size: var(--t-md); margin-bottom: 4px;">📱 Airtel Money</div>
+            <div style="font-size: var(--t-xs); color: var(--gris);">Mobile money</div>
+          </div>
+          <div class="pay-method">
+            <div style="font-size: var(--t-md); margin-bottom: 4px;">📱 M-Pesa</div>
+            <div style="font-size: var(--t-xs); color: var(--gris);">Vodacom</div>
+          </div>
+          <div class="pay-method">
+            <div style="font-size: var(--t-md); margin-bottom: 4px;">💳 Visa</div>
+            <div style="font-size: var(--t-xs); color: var(--gris);">Carte bancaire</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside style="position: sticky; top: calc(var(--nav-h) + 16px); align-self: start;">
+      <div class="booking-card" style="position: static;">
+        <div style="display: flex; gap: var(--s-3); margin-bottom: var(--s-4);">
+          <div style="width: 80px; height: 80px; border-radius: var(--r-sm); background: linear-gradient(135deg, var(--sang-deep), var(--sang)); flex-shrink: 0;"></div>
+          <div>
+            <div style="font-weight: 600;">Mama Koko</div>
+            <div style="color: var(--gris); font-size: var(--t-sm);">Gombe · Restaurant</div>
+          </div>
+        </div>
+        <div class="booking-summary">
+          <div class="booking-summary__row"><span>15 nov. → 17 nov.</span><span class="mono">2 nuits</span></div>
+          <div class="booking-summary__row"><span>4 500 × 2</span><span class="mono">9 000 CDF</span></div>
+          <div class="booking-summary__row"><span>Frais de service</span><span class="mono">500 CDF</span></div>
+          <div class="booking-summary__row booking-summary__row--total"><span>Total</span><span class="mono">9 500 CDF</span></div>
+        </div>
+        <a href="./confirmation.html" class="btn btn--primary btn--lg" style="width: 100%;">Confirmer et payer</a>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll(".pay-method").forEach(el => {
+    el.addEventListener("click", () => {
+      document.querySelectorAll(".pay-method").forEach(x => x.classList.remove("is-active"));
+      el.classList.add("is-active");
+    });
+  });
+</script>
+</body>
+</html>
