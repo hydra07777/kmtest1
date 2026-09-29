@@ -5,28 +5,32 @@
    ============================================================ */
 
 :root {
-  /* Couleurs — palette ZenSpace (ciel, océan, glass) */
-  --sky:        #B8DCEB;   /* bleu ciel clair */
-  --sky-soft:   #DCEEF5;   /* bleu très clair */
-  --ocean:      #6FB4C7;   /* turquoise océan */
-  --ocean-deep: #3D8597;   /* sarcelle profond */
-  --teal:       #2E6275;   /* bleu nuit */
-  --navy:       #1B3A4A;   /* encre bleue, pour accents sombres */
-  --ink:        #0E1B22;   /* presque noir bleuté */
-  --ink-soft:   #1A2A33;
-  --paper:      #F4F8FA;   /* ivoire bleuté */
+  /* Couleurs — palette Bleus profonds (du marine au ciel clair) */
+  --ink:        #0E1B40;   /* bleu marine très profond, presque noir */
+  --ink-soft:   #1A2750;   /* marine secondaire */
+  --ink-50:     #243560;   /* marine tertiaire */
+  --paper:      #F2F7FB;   /* ivoire bleuté très clair */
   --paper-elev: #FFFFFF;
-  --paper-warm: #EDF3F6;
-  --gris:       #5A6B73;   /* gris bleuté */
-  --gris-soft:  #92A2A9;
+  --paper-warm: #E6EFF6;
+  --gris:       #5A6B7E;   /* gris bleuté */
+  --gris-soft:  #92A2AF;
+
+  /* Palette bleue (5 tons, du sombre au clair) */
+  --ocean:      #1A75BC;   /* bleu océan vif */
+  --ocean-deep: #2A4D8F;   /* bleu roi */
+  --teal:       #1F4F7A;   /* bleu nuit */
+  --navy:       #0E1B40;   /* marine profond (= ink) */
+  --sky:        #7CB5DD;   /* bleu doux */
+  --sky-soft:   #D9EBF6;   /* bleu ciel très clair */
+  --sky-mute:   #B8DAEC;   /* bleu ciel muet */
 
   /* Glass tokens */
   --glass-bg:        rgba(255, 255, 255, 0.55);
   --glass-bg-strong: rgba(255, 255, 255, 0.78);
   --glass-border:    rgba(255, 255, 255, 0.65);
-  --glass-shadow:    0 8px 32px rgba(27, 58, 74, 0.12);
+  --glass-shadow:    0 8px 32px rgba(14, 27, 64, 0.14);
 
-  --line: rgba(27, 58, 74, 0.10);
+  --line: rgba(14, 27, 64, 0.10);
 
   /* Typo */
   --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;

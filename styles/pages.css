@@ -72,7 +72,7 @@
   border-radius: 20px;
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
-  box-shadow: 0 8px 24px rgba(27, 58, 74, 0.08);
+  box-shadow: 0 8px 24px rgba(14, 27, 64, 0.08);
   padding: 24px;
   position: sticky;
   top: calc(var(--nav-h) + 16px);
@@ -84,6 +84,93 @@
   font-weight: 700;
   color: var(--ink);
   margin-bottom: 20px;
+}
+.filters__heading { display: none; }
+
+@media (max-width: 960px) {
+  .filters {
+    position: static;
+    padding: 0;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+  .filters__heading { display: block; margin-bottom: 12px; }
+}
+
+/* Toggle (visible uniquement sur mobile) */
+.filters__toggle {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: var(--t-base);
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  gap: 8px;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 4px 12px rgba(14, 27, 64, 0.08);
+  transition: background-color var(--d-base) var(--ease-out), transform var(--d-fast) var(--ease-out);
+}
+.filters__toggle:active { transform: scale(0.98); }
+.filters__toggle > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.filters__toggle svg { color: var(--ocean-deep); }
+.filters__chevron {
+  transition: transform var(--d-base) var(--ease-out);
+}
+.filters__toggle[aria-expanded="true"] .filters__chevron {
+  transform: rotate(180deg);
+}
+
+.filters__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--paper-warm);
+  color: var(--gris);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: 4px;
+  transition: background-color var(--d-base) var(--ease-out), color var(--d-base) var(--ease-out);
+}
+.filters__count.is-active {
+  background: var(--ocean);
+  color: var(--paper-elev);
+}
+
+@media (max-width: 960px) {
+  .filters__toggle { display: flex; }
+  .filters__body {
+    display: none;
+    margin-top: 16px;
+    padding: 20px;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    box-shadow: 0 4px 16px rgba(14, 27, 64, 0.08);
+  }
+  .filters__body.is-open { display: block; }
 }
 .filters__group { margin-bottom: 20px; }
 .filters__group:last-child { margin-bottom: 0; }
@@ -216,9 +303,9 @@
 }
 
 .badge--ocean {
-  background: rgba(63, 133, 151, 0.12);
+  background: rgba(42, 77, 143, 0.12);
   color: var(--ocean-deep);
-  border: 1px solid rgba(63, 133, 151, 0.3);
+  border: 1px solid rgba(42, 77, 143, 0.3);
   font-size: 11px;
 }
 
@@ -265,7 +352,7 @@
 .listing-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(14, 27, 34, 0) 60%, rgba(14, 27, 34, 0.4) 100%);
+  background: linear-gradient(180deg, rgba(14, 27, 64, 0) 60%, rgba(14, 27, 64, 0.4) 100%);
 }
 
 .listing-body {
@@ -358,7 +445,7 @@
   left: 12px;
   bottom: 12px;
   padding: 6px 12px;
-  background: rgba(14, 27, 34, 0.6);
+  background: rgba(14, 27, 64, 0.6);
   color: var(--paper-elev);
   border-radius: 999px;
   font-size: var(--t-xs);
@@ -437,7 +524,7 @@
   border-radius: 24px;
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: 0 12px 32px rgba(27, 58, 74, 0.14);
+  box-shadow: 0 12px 32px rgba(14, 27, 64, 0.14);
   padding: 24px;
 }
 .booking-card__price {
@@ -607,7 +694,7 @@
 .pay-method.is-active {
   border-color: var(--ink);
   background: var(--paper-warm);
-  box-shadow: 0 4px 12px rgba(27, 58, 74, 0.08);
+  box-shadow: 0 4px 12px rgba(14, 27, 64, 0.08);
 }
 .pay-method__icon { font-size: 24px; margin-bottom: 6px; }
 .pay-method__name {
@@ -701,7 +788,7 @@
   border-radius: 24px;
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: 0 12px 32px rgba(27, 58, 74, 0.12);
+  box-shadow: 0 12px 32px rgba(14, 27, 64, 0.12);
   padding: 28px;
   text-align: left;
 }

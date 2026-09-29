@@ -35,7 +35,6 @@
       </button>
       <button class="nav__icon-btn" aria-label="Rechercher"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
       <button class="nav__icon-btn" aria-label="Notifications"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></button>
-      <button class="nav__icon-btn" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     </div>
   </div>
 </header>
@@ -54,25 +53,35 @@
   <div class="search-layout">
 
     <aside class="filters" aria-label="Filtres">
-      <h3>Filtres</h3>
+      <button class="filters__toggle" aria-expanded="false" aria-controls="filters-body">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+          Filtres
+        </span>
+        <span class="filters__count" id="filters-count">0</span>
+        <svg class="filters__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div id="filters-body" class="filters__body">
+        <h3 class="filters__heading">Filtres</h3>
 
-      <div class="filters__group">
-        <span class="filters__group-label">Catégorie</span>
-        <div id="cat-chips" class="filters__chips"></div>
-      </div>
+        <div class="filters__group">
+          <span class="filters__group-label">Catégorie</span>
+          <div id="cat-chips" class="filters__chips"></div>
+        </div>
 
-      <div class="filters__group">
-        <span class="filters__group-label">Quartier</span>
-        <div id="q-chips" class="filters__chips"></div>
-      </div>
+        <div class="filters__group">
+          <span class="filters__group-label">Quartier</span>
+          <div id="q-chips" class="filters__chips"></div>
+        </div>
 
-      <div class="filters__group">
-        <span class="filters__group-label">Budget</span>
-        <div class="filters__chips">
-          <button class="filters__chip is-active" data-price="all">Tous</button>
-          <button class="filters__chip" data-price="low">−5 000 CDF</button>
-          <button class="filters__chip" data-price="mid">5–15k CDF</button>
-          <button class="filters__chip" data-price="high">15k+ CDF</button>
+        <div class="filters__group">
+          <span class="filters__group-label">Budget</span>
+          <div class="filters__chips">
+            <button class="filters__chip is-active" data-price="all">Tous</button>
+            <button class="filters__chip" data-price="low">−5 000 CDF</button>
+            <button class="filters__chip" data-price="mid">5–15k CDF</button>
+            <button class="filters__chip" data-price="high">15k+ CDF</button>
+          </div>
         </div>
       </div>
     </aside>
@@ -202,6 +211,17 @@
 
     document.getElementById("results-count").textContent = `${list.length} lieux`;
 
+    // Compteur de filtres actifs (hors "Tout/all" qui sont l'état par défaut)
+    const countEl = document.getElementById("filters-count");
+    if (countEl) {
+      let n = 0;
+      if (activeCat !== "all") n++;
+      if (activeQuartier !== "all") n++;
+      if (activePrice !== "all") n++;
+      countEl.textContent = n > 0 ? String(n) : "0";
+      countEl.classList.toggle("is-active", n > 0);
+    }
+
     const results = document.getElementById("results");
     if (!list.length) {
       results.innerHTML = `<div class="empty-state"><h3>Aucun résultat</h3><p>Essaie d'élargir tes filtres.</p></div>`;
@@ -252,6 +272,29 @@
       render();
     });
   });
+
+  // Toggle des filtres (mobile)
+  const toggle = document.querySelector(".filters__toggle");
+  const body = document.getElementById("filters-body");
+  if (toggle && body) {
+    // Desktop : toujours ouvert, le toggle est caché. Mobile : fermé par défaut.
+    const syncFromViewport = () => {
+      if (window.matchMedia("(min-width: 961px)").matches) {
+        body.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+      } else {
+        body.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    };
+    syncFromViewport();
+    window.addEventListener("resize", syncFromViewport);
+
+    toggle.addEventListener("click", () => {
+      const isOpen = body.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
 
   render();
 })();
