@@ -6,9 +6,9 @@
 
 :root {
   /* Couleurs — palette Bleus profonds (du marine au ciel clair) */
-  --ink:        #0E1B40;   /* bleu marine très profond, presque noir */
-  --ink-soft:   #1A2750;   /* marine secondaire */
-  --ink-50:     #243560;   /* marine tertiaire */
+  --ink:        #001f3f;   /* bleu marine très profond, presque noir */
+  --ink-soft:   #003366;   /* marine secondaire */
+  --ink-50:     #004080;   /* marine tertiaire */
   --paper:      #F2F7FB;   /* ivoire bleuté très clair */
   --paper-elev: #FFFFFF;
   --paper-warm: #E6EFF6;
@@ -16,10 +16,10 @@
   --gris-soft:  #92A2AF;
 
   /* Palette bleue (5 tons, du sombre au clair) */
-  --ocean:      #1A75BC;   /* bleu océan vif */
-  --ocean-deep: #2A4D8F;   /* bleu roi */
+  --ocean:      #0059b3;   /* bleu océan vif */
+  --ocean-deep: #0073e6;   /* bleu roi */
   --teal:       #1F4F7A;   /* bleu nuit */
-  --navy:       #0E1B40;   /* marine profond (= ink) */
+  --navy:       #001f3f;   /* marine profond (= ink) */
   --sky:        #7CB5DD;   /* bleu doux */
   --sky-soft:   #D9EBF6;   /* bleu ciel très clair */
   --sky-mute:   #B8DAEC;   /* bleu ciel muet */
